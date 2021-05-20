@@ -1,0 +1,75 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+:root {
+    --blue: rgb(64, 160, 224);
+    --background: rgb(18, 18, 18);
+    --foreground: rgb(255, 255, 255);
+    --radius: 10px
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    font-family: 'Poppins', serif;
+    color: white;
+}
+
+.header {
+    background-color: var(--background);
+    text-align: center;
+    margin-top: 30px;
+}
+
+.news {
+    border: var(--blue);
+    border-radius: var(--radius);
+    border-style: solid;
+    padding: 10px;
+    margin: auto 50%;
+    width: 400px;
+    height: 400px;
+}
+
+.content {
+    padding: 16px;
+}
+
+#navbar {
+    overflow: hidden;
+    background-color: var(--blue);
+    color: var(--background);
+    border-radius: var(--radius);
+}
+
+#navbar a {
+    float: right;
+    display: block;
+    color: var(--foreground);
+    text-align: center;
+    padding: 20px 20px;
+    text-decoration: none;
+}
+  
+#navbar a:hover {
+    background: var(--foreground);
+    color: var(--background);
+    border-radius: var(--radius);
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+.sticky + .content {
+    padding-top: 60px;
+}
+
+.mySlides {
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    border-radius: var(--radius);
+    align-items: center;
+}
