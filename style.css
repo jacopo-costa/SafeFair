@@ -1,10 +1,58 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 
 :root {
-    --blue: rgb(64, 160, 224);
+    --blue: #286a96;
     --background: rgb(18, 18, 18);
     --foreground: rgb(255, 255, 255);
     --radius: 10px
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 5%;
+}
+
+.logo {
+    padding: auto;
+    cursor: pointer;
+}
+
+.links a, .login{
+    color: var(--foreground);
+    text-decoration: none;
+}
+
+.links {
+    list-style: none;
+    display: flex;
+}
+
+.links li{
+    padding: 0px 20px;
+}
+
+.links li a{
+    transition: color 0.3s ease 0s;
+}
+
+.links li a:hover {
+    color: var(--blue);
+}
+
+.login {
+    background-color: var(--blue);
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: color 0.3s ease 0s;
+}
+
+.login:hover {
+    color: var(--background);
 }
 
 body {
@@ -14,11 +62,26 @@ body {
     color: white;
 }
 
-.header {
-    background-color: var(--background);
-    text-align: center;
-    margin-top: 30px;
-}
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: var(--blue); /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 20px; /* Some padding */
+    border-radius: var(--radius); /* Rounded corners */
+    font-size: 20px;
+    transition: color 0.3s ease 0s;
+  }
+  
+  #myBtn:hover {
+    color: var(--background);
+  }
 
 .news {
     border: var(--blue);
@@ -30,46 +93,10 @@ body {
     height: 400px;
 }
 
-.content {
-    padding: 16px;
-}
-
-#navbar {
-    overflow: hidden;
-    background-color: var(--blue);
-    color: var(--background);
-    border-radius: var(--radius);
-}
-
-#navbar a {
-    float: right;
-    display: block;
-    color: var(--foreground);
-    text-align: center;
-    padding: 20px 20px;
-    text-decoration: none;
-}
-  
-#navbar a:hover {
-    background: var(--foreground);
-    color: var(--background);
-    border-radius: var(--radius);
-}
-
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  }
-  
-.sticky + .content {
-    padding-top: 60px;
-}
-
 .mySlides {
     width: 50%;
     margin: auto;
-    padding: 10px;
-    border-radius: var(--radius);
+    padding: 20px;
+    border-radius: 50px;
     align-items: center;
 }
