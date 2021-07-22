@@ -1,0 +1,25 @@
+{
+  "name": "safefair",
+  "version": "1.0.0",
+  "description": "Progetto scolastico per applicazione web",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Jacopo Costa",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-flash": "^0.0.2",
+    "express-generator": "^4.16.1",
+    "express-session": "^1.17.2",
+    "passport": "^0.4.1",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

@@ -1,0 +1,104 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
+:root {
+    --blue: #286a96;
+    --background: rgb(18, 18, 18);
+    --foreground: rgb(255, 255, 255);
+    --radius: 10px
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 1%;
+}
+
+.logo {
+    width: 8em;
+    cursor: pointer;
+    display: block;
+}
+
+.links a, .login{
+    color: var(--foreground);
+    text-decoration: none;
+}
+
+.links {
+    list-style: none;
+    display: flex;
+}
+
+.links li{
+    padding: 0px 20px;
+}
+
+.links li a{
+    transition: color 0.3s ease 0s;
+}
+
+.links li a:hover {
+    color: var(--blue);
+}
+
+.login {
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: color 0.3s ease 0s;
+}
+
+.login:hover {
+    color: var(--background);
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    font-family: 'Poppins', serif;
+    color: white;
+}
+
+#topButton {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: var(--blue); /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 20px; /* Some padding */
+    border-radius: var(--radius); /* Rounded corners */
+    font-size: 20px;
+    transition: color 0.3s ease 0s;
+  }
+  
+  #topButton:hover {
+    color: var(--background);
+  }
+
+.news {
+    border: var(--blue);
+    border-radius: var(--radius);
+    border-style: solid;
+    padding: 10px;
+    margin: auto 50%;
+    width: 400px;
+    height: 400px;
+}
+
+.mySlides {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 50px;
+    align-items: center;
+}
