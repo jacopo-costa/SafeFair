@@ -23,8 +23,20 @@
         <a class="login" href="#"> Log In</a>
     </header>
 
+    <div id="ultime-fiere">
+            <h2><%= fiera.nome %> </h2>
+            <img src="/img/fiere/<%= fiera.nome %>/1.jpg" alt="<%= fiera.nome %>">
+            <h1>Descrizione: </h1>
+            <p><%= fiera.descrizione %> </p>
+            <h1>Posti totali:</h1>
+            <h3><%= fiera.postiTotali %></h3>
+            <h1>Posti rimanenti:</h1>
+            <h3><%= fiera.postiRimanenti %></h3>
+            <a href="/<%= fiera.id %>">Clicca qui</a>
+    </div>
+
 <footer>
-    <p>&copy; Copyright 2020 The Awesome People</p>
+    <p>Footer</p>
 </footer>
 <script src="/js/scripts.js"></script>
 </body>
