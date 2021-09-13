@@ -1,15 +1,15 @@
 // imports
 const express = require('express')
-const app = express()
 const bcrypt = require('bcrypt')
-const sqlite = require('sqlite');
-const { query } = require('express')
+const sqlite3 = require('sqlite3');
+
+const app = express()
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 // Connessione al DB
-let db = new sqlite.Database('safefair.db', (err) => {
+let db = new sqlite3.Database('safefair.db', (err) => {
 	if (err) {
 	  console.error(err.message);
 	}
@@ -24,7 +24,6 @@ app.listen(port, () => console.info(`Ascolto su porta ${port}`))
 
 // GETs
 app.get('/', (req,res) => {
-	console.log(req.query)
   	db.all("SELECT * FROM Fiere ORDER BY id limit 5", [], (err, rows) => {
     	if (err) {
     	  return console.error(err.message)
@@ -47,18 +46,9 @@ app.get('/:id', (req, res) => {
 	})
 })
 
-app.get('/search', (req, res) => {
-
-	console.log(req.query.q)
-
-	// var string = "SELECT * FROM Fiere WHERE (nome LIKE '%" + search + "%' OR posizione LIKE '%" + search + "%' OR tag LIKE '%" + search + "%')"
-
-	// db.query(q, (err, rows) => {
-
-	// 	if (err) {
-	// 		return console.error(err.message)
-	// 	}
-	// 	res.render("search", {fiere: rows, q})
-
-	// })
-})
+//db.close((err) => {
+//	if (err) {
+//	  console.error(err.message);
+//	}
+//	console.log('Close the database connection.');
+  //});
