@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeFair</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    </head>
+<body>
+
+    <button onclick="topFunction()" id="topButton" title="Go to top">Top</button>
+
+    <header>
+        <a href="/"><img class="logo" src="/img/logo.png" alt="logo"></a>
+        <nav>
+            <ul class="links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#fiere">Fiere</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+        </nav>
+        <a class="login" href="#"> Log In</a>
+    </header>
+
+    <h2>Hai cercato per: <%q%></h2>
+
+    <div id="searched">
+        <% for( const fiera of fiere ) { %>
+            <h2><%= fiera.nome %> </h2>
+            <p><%= fiera.descrizione %> </p>
+            <a href="/<%= fiera.id %>">Clicca qui</a>
+        <% } %>
+    </div>
+
+<footer>
+    <p>&copy; Copyright 2020 The Awesome People</p>
+</footer>
+<script src="/js/scripts.js"></script>
+</body>
+</html>
