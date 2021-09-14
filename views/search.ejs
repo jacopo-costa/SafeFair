@@ -1,41 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafeFair</title>
-    <link rel="stylesheet" href="/styles/style.css">
-    </head>
-<body>
+<%- include ('./partials/header.ejs') %>
 
-    <button onclick="topFunction()" id="topButton" title="Go to top">Top</button>
+    <p>Hai cercato per: <b> <%- q %> </b></p>
 
-    <header>
-        <a href="/"><img class="logo" src="/img/logo.png" alt="logo"></a>
-        <nav>
-            <ul class="links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#fiere">Fiere</a></li>
-                <li><a href="#contatti">Contatti</a></li>
-            </ul>
-        </nav>
-        <a class="login" href="#"> Log In</a>
-    </header>
-
-    <p>Hai cercato per: <b><%- x %></b></p>
-
-    <div id="searched">
+    <div>
         <% for( const fiera of fiere ) { %>
-            <h2><%= fiera.nome %> </h2>
-            <p><%= fiera.descrizione %> </p>
-            <a href="/<%= fiera.id %>">Clicca qui</a>
-        <% } %>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= fiera.nome %>
+                    </h5>
+                    <p class="card-text">
+                        <%= fiera.descrizione %>
+                    </p>
+                    <a href="/fiera/<%= fiera.id %>" class="btn btn-primary">Vai alla fiera</a>
+                </div>
+            </div>
+            <% } %>
     </div>
 
-<footer>
-    <p>&copy; Copyright 2020 The Awesome People</p>
-</footer>
-<script src="/js/scripts.js"></script>
-</body>
-</html>
+    <%- include ('./partials/footer.ejs') %>

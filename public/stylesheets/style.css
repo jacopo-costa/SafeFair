@@ -1,67 +1,23 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins);
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+#scrollToTopBtn {
+    background-color: black;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 48px;
+    width: 48px;
+  }
 
-:root {
-    --blue: #286a96;
-    --background: rgb(18, 18, 18);
-    --foreground: rgb(255, 255, 255);
-    --radius: 10px
-}
-
-header {
+/* header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1% 1%;
-}
+} */
 
 /*.logo {
     width: 8em;
     cursor: pointer;
     display: block;
-}
-
-.links a, .login{
-    color: var(--foreground);
-    text-decoration: none;
-}
-
-.links {
-    list-style: none;
-    display: flex;
-}
-
-.links li{
-    padding: 0px 20px;
-}
-
-.links li a{
-    transition: color 0.3s ease 0s;
-}
-
-.links li a:hover {
-    color: var(--blue);
-}
-
-.login {
-    background-color: var(--blue);
-    color: white;
-    border: none;
-    border-radius: var(--radius);
-    padding: 10px 10px;
-    cursor: pointer;
-    transition: color 0.3s ease 0s;
-}
-
-.login:hover {
-    color: var(--background);
-}*/
-
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
 }

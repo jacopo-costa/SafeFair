@@ -1,47 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafeFair</title>
-    <link rel="stylesheet" href="/styles/style.css">
-    </head>
-<body>
+<%- include ('./partials/header.ejs') %>
 
-    <button onclick="topFunction()" id="topButton" title="Go to top">Top</button>
-
-    <header>
-        <a href="/"><img class="logo" src="/img/logo.png" alt="logo"></a>
-        <nav>
-            <ul class="links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#fiere">Fiere</a></li>
-                <li><a href="#contatti">Contatti</a></li>
-            </ul>
-        </nav>
-        <a class="login" href="#"> Log In</a>
-    </header>
-
-    <div id="ultime-fiere">
-        <% for( const fiera of fiere ) { %>
-            <h2><%= fiera.nome %> </h2>
-            <img src="/img/fiere/<%= fiera.nome %>/1.jpg" alt="<%= fiera.nome %>">
-            <p><%= fiera.descrizione %> </p>
-            <a href="/<%= fiera.id %>">Clicca qui</a>
+<div id="ultime-fiere">
+    <% for( const fiera of fiere ) { %>
+        <h2>
+            <%= fiera.nome %>
+        </h2>
+        <img src="/img/fiere/<%= fiera.nome %>/1.jpg" alt="<%= fiera.nome %>">
+        <p>
+            <%= fiera.descrizione %>
+        </p>
+        <a href="/<%= fiera.id %>">Clicca qui</a>
         <% } %>
-    </div>
-    <h1><%= news.news %> </h1>
+</div>
+<h1>
+    <%= news.news %>
+</h1>
 
-    <div id="news">
-        <% for( const notizia of news ) { %>
-            <h2><%= notizia.news %> </h2>
+<div id="news">
+    <% for( const notizia of news ) { %>
+        <h2>
+            <%= notizia.news %>
+        </h2>
         <% } %>
-    </div>
+</div>
 
-<footer>
-    <p>&copy; Copyright 2020 The Awesome People</p>
-</footer>
-<script src="/js/scripts.js"></script>
-</body>
-</html>
+<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos tenetur perspiciatis, fuga, omnis ipsum magnam corrupti molestias ab dolorem ullam iusto voluptatem eligendi alias. Sed iusto a, soluta, possimus, dolorum natus accusantium suscipit eum laborum quo assumenda? Maiores perspiciatis laborum impedit tempore deserunt odit a debitis recusandae, voluptates repellat laboriosam nam natus, quis aliquam ex ipsum provident? Omnis nihil sequi quisquam nesciunt reprehenderit sint sed. Dolor impedit necessitatibus, velit commodi vero laboriosam nihil culpa architecto dolores rem suscipit officia reprehenderit autem amet, minima quos aspernatur aliquid ab ipsum. Inventore, totam! Deleniti magni voluptatibus repudiandae sunt accusantium nesciunt odit ab tempora quidem, similique fugiat hic temporibus repellendus officiis. Qui nesciunt, odit architecto dignissimos, perferendis esse harum praesentium repellendus recusandae, laborum tenetur quasi alias vel quam suscipit ratione beatae eos! Eligendi nam ad illo modi, alias possimus molestiae est aliquam et at ab inventore facere exercitationem consectetur necessitatibus fuga velit! In nihil, delectus ad, maiores quasi assumenda ratione accusamus, neque suscipit reiciendis earum ab voluptatibus? Reiciendis necessitatibus incidunt maxime adipisci temporibus repudiandae ipsum soluta eum, laborum molestias cumque deserunt magni autem rem ullam repellendus nemo dolorem perferendis quos sunt id minus? Commodi laborum odit asperiores nesciunt ad quos aliquid aperiam eaque porro!</h1>
+<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos tenetur perspiciatis, fuga, omnis ipsum magnam corrupti molestias ab dolorem ullam iusto voluptatem eligendi alias. Sed iusto a, soluta, possimus, dolorum natus accusantium suscipit eum laborum quo assumenda? Maiores perspiciatis laborum impedit tempore deserunt odit a debitis recusandae, voluptates repellat laboriosam nam natus, quis aliquam ex ipsum provident? Omnis nihil sequi quisquam nesciunt reprehenderit sint sed. Dolor impedit necessitatibus, velit commodi vero laboriosam nihil culpa architecto dolores rem suscipit officia reprehenderit autem amet, minima quos aspernatur aliquid ab ipsum. Inventore, totam! Deleniti magni voluptatibus repudiandae sunt accusantium nesciunt odit ab tempora quidem, similique fugiat hic temporibus repellendus officiis. Qui nesciunt, odit architecto dignissimos, perferendis esse harum praesentium repellendus recusandae, laborum tenetur quasi alias vel quam suscipit ratione beatae eos! Eligendi nam ad illo modi, alias possimus molestiae est aliquam et at ab inventore facere exercitationem consectetur necessitatibus fuga velit! In nihil, delectus ad, maiores quasi assumenda ratione accusamus, neque suscipit reiciendis earum ab voluptatibus? Reiciendis necessitatibus incidunt maxime adipisci temporibus repudiandae ipsum soluta eum, laborum molestias cumque deserunt magni autem rem ullam repellendus nemo dolorem perferendis quos sunt id minus? Commodi laborum odit asperiores nesciunt ad quos aliquid aperiam eaque porro!</h1>
+<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos tenetur perspiciatis, fuga, omnis ipsum magnam corrupti molestias ab dolorem ullam iusto voluptatem eligendi alias. Sed iusto a, soluta, possimus, dolorum natus accusantium suscipit eum laborum quo assumenda? Maiores perspiciatis laborum impedit tempore deserunt odit a debitis recusandae, voluptates repellat laboriosam nam natus, quis aliquam ex ipsum provident? Omnis nihil sequi quisquam nesciunt reprehenderit sint sed. Dolor impedit necessitatibus, velit commodi vero laboriosam nihil culpa architecto dolores rem suscipit officia reprehenderit autem amet, minima quos aspernatur aliquid ab ipsum. Inventore, totam! Deleniti magni voluptatibus repudiandae sunt accusantium nesciunt odit ab tempora quidem, similique fugiat hic temporibus repellendus officiis. Qui nesciunt, odit architecto dignissimos, perferendis esse harum praesentium repellendus recusandae, laborum tenetur quasi alias vel quam suscipit ratione beatae eos! Eligendi nam ad illo modi, alias possimus molestiae est aliquam et at ab inventore facere exercitationem consectetur necessitatibus fuga velit! In nihil, delectus ad, maiores quasi assumenda ratione accusamus, neque suscipit reiciendis earum ab voluptatibus? Reiciendis necessitatibus incidunt maxime adipisci temporibus repudiandae ipsum soluta eum, laborum molestias cumque deserunt magni autem rem ullam repellendus nemo dolorem perferendis quos sunt id minus? Commodi laborum odit asperiores nesciunt ad quos aliquid aperiam eaque porro!</h1>
+<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos tenetur perspiciatis, fuga, omnis ipsum magnam corrupti molestias ab dolorem ullam iusto voluptatem eligendi alias. Sed iusto a, soluta, possimus, dolorum natus accusantium suscipit eum laborum quo assumenda? Maiores perspiciatis laborum impedit tempore deserunt odit a debitis recusandae, voluptates repellat laboriosam nam natus, quis aliquam ex ipsum provident? Omnis nihil sequi quisquam nesciunt reprehenderit sint sed. Dolor impedit necessitatibus, velit commodi vero laboriosam nihil culpa architecto dolores rem suscipit officia reprehenderit autem amet, minima quos aspernatur aliquid ab ipsum. Inventore, totam! Deleniti magni voluptatibus repudiandae sunt accusantium nesciunt odit ab tempora quidem, similique fugiat hic temporibus repellendus officiis. Qui nesciunt, odit architecto dignissimos, perferendis esse harum praesentium repellendus recusandae, laborum tenetur quasi alias vel quam suscipit ratione beatae eos! Eligendi nam ad illo modi, alias possimus molestiae est aliquam et at ab inventore facere exercitationem consectetur necessitatibus fuga velit! In nihil, delectus ad, maiores quasi assumenda ratione accusamus, neque suscipit reiciendis earum ab voluptatibus? Reiciendis necessitatibus incidunt maxime adipisci temporibus repudiandae ipsum soluta eum, laborum molestias cumque deserunt magni autem rem ullam repellendus nemo dolorem perferendis quos sunt id minus? Commodi laborum odit asperiores nesciunt ad quos aliquid aperiam eaque porro!</h1>
+
+<%- include ('./partials/footer.ejs') %>

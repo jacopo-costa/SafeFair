@@ -1,18 +1,22 @@
-//Get the button:
-mybutton = document.getElementById("topButton");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.documentElement.scrollTop > 60) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+// Wait for page to load
+window.onload = function() {
+  //Get the top button:
+  var scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  scrollToTopBtn.addEventListener('click', scrollToTop);
 }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.documentElement.scrollTop = 0;
+// Get the root of document
+var rootElement = document.documentElement;
+
+// Scroll to the top
+function scrollToTop() {
+  rootElement.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  })
+};
+
+function fullCerca(){
+  var query = document.ricerca.q.value;
+  window.open("http://localhost:3000/fiera/?q=" + query, "_self");
 }
