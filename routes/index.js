@@ -11,7 +11,7 @@ router.get('/', (req,res) => {
 			if (err) {
 				return console.error(err.message)
 			}
-			res.render("index", {fiere: rows, news: righe})
+			res.render('index', {fiere: rows, news: righe})
 	})
   })
 });
