@@ -17,6 +17,9 @@ function scrollToTop() {
 };
 
 function fullCerca(){
-  var query = document.ricerca.q.value;
-  window.open("http://localhost:3000/fiera/?q=" + query, "_self");
+  var url = new URL("http://localhost:3000/fiera/");
+  console.log(document.q.value)
+  url.searchParams.append('q', document.q.value)
+
+  window.open(url)
 }
