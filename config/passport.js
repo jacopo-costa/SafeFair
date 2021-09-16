@@ -1,40 +1,37 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
+const db = require('../db');
 
-// Load User model
-const User = require('../models/User');
+// Load User schema
+const User = require('../models/user');
 
-module.exports = function(passport) {
+module.exports = (passport) => {
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-      // Match user
-      User.findOne({
-        email: email
-      }).then(user => {
-        if (!user) {
-          return done(null, false, { message: 'That email is not registered' });
-        }
+    new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, 
+    (email, password, done) => {
 
-        // Match password
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-          if (err) throw err;
-          if (isMatch) {
-            return done(null, user);
-          } else {
-            return done(null, false, { message: 'Password incorrect' });
+      // Match user & password
+      User.getUser(email, password)
+        .then(({ user, check }) => {
+          if (!check) {
+            return done(null, false, { message: 'Password errata' });
           }
+          return done(null, user);
+        })
+        .catch((errormsg) => {
+          return done(null, false, { message: errormsg });
+        });
+
+      passport.serializeUser((user, done) => {
+        done(null, user.id);
+      });
+
+      passport.deserializeUser((id, done) => {
+        User.findById(id, (err, user) => {
+          done(err, user);
         });
       });
+
     })
-  );
-
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
-
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
-    });
-  });
-};
+  )
+}

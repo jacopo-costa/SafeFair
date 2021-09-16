@@ -7,86 +7,108 @@
                     <i class="fas fa-user-plus"></i> Registrati
                 </h1>
                 <%- include ('./partials/messages.ejs') %>
-                <form action="/user/register" method="POST">
-                    <div class="form-group">
-                        <label for="nome">Username</label>
-                        <input
-                          type="nome"
-                          id="nome"
-                          name="nome"
-                          class="form-control"
-                          placeholder="Inserisci Username"
-                          value="<%= typeof nome != 'undefined' ? nome : '' %>"
-                        />
-                      </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            class="form-control"
-                            placeholder="Inserisci Email"
-                            value="<%= typeof email != 'undefined' ? email : '' %>"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            class="form-control"
-                            placeholder="Inserisci Password"
-                            value="<%= typeof password != 'undefined' ? password : '' %>"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label for="password2">Conferma Password</label>
-                        <input
-                        type="password"
-                        id="password2"
-                        name="password2"
-                        class="form-control"
-                        placeholder="Conferma Password"
-                        value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-                      />
-                    </div>
-                    <div class="form-group">
-                        <label for="posizione">Posizione</label>
-                        <input
-                            type="text"
-                            id="posizione"
-                            name="posizione"
-                            class="form-control"
-                            placeholder="Inserisci una città"
-                            value="<%= typeof posizione != 'undefined' ? posizione : '' %>"
-                        />
-                    </div>
-                    <fieldset class="form-group">
-                        <legend class="mt-4">Tags</legend>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Default checkbox
-                            </label>
+                    <form action="/user/register" method="POST">
+                        <div class="form-group" style="margin: 10px;">
+                            <label for="nome">Username</label>
+                            <input type="nome" id="nome" name="nome" class="form-control"
+                                placeholder="Inserisci Username"
+                                value="<%= typeof nome != 'undefined' ? nome : '' %>" />
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Checked checkbox
-                            </label>
+                        <div class="form-group" style="margin: 10px;">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="Inserisci Email" value="<%= typeof email != 'undefined' ? email : '' %>" />
+                        </div>
+                        <div class="form-group" style="margin: 10px;">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control"
+                                placeholder="Inserisci Password"
+                                value="<%= typeof password != 'undefined' ? password : '' %>" />
+                        </div>
+                        <div class="form-group" style="margin: 10px;">
+                            <label for="password2">Conferma Password</label>
+                            <input type="password" id="password2" name="password2" class="form-control"
+                                placeholder="Conferma Password"
+                                value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+                        </div>
+                        <div class="form-group" style="margin: 10px;">
+                            <label for="posizione">Posizione</label>
+                            <input type="text" id="posizione" name="posizione" class="form-control"
+                                placeholder="Inserisci una città"
+                                value="<%= typeof posizione != 'undefined' ? posizione : '' %>" />
                         </div>
 
+                        <fieldset class="form-group">
+                            <div class="form-check" style="margin-top: 20px;">
+                                <input class="form-check-input" type="checkbox" name="tipo" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Sono un venditore
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <legend class="mt-4">Tags</legend>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="fumetto" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Fumetto
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="artigianato"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Artigianato
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="nautica" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Nautica
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="cucina" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Cucina
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="agricoltura"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Agricoltura
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="tecnologia" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Tecnologia
+                                </label>
+                            </div>
+                        </fieldset>
                         <div style="margin-top: 20px;">
                             <button type="submit" class="btn btn-primary">Invia</button>
                         </div>
-                        
-                    </fieldset>
-                </form>
-                <p>Hai un account? <a href="/user/login">Login</a></p>
+
+                    </form>
+                    <p>Hai un account? <a href="/user/login">Login</a></p>
             </div>
         </div>
     </div>
 
-    <%- include ('./partials/footer.ejs') %>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+    <script src="/javascripts/scripts.js"></script>
+    </body>
+
+    </html>
