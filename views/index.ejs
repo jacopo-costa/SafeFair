@@ -7,39 +7,39 @@
                 <% for( const fiera of fiere ) { %>
                     <div class="card" style="width: 30rem; margin-bottom: 10px; margin-top: 10px;">
                         <% switch (fiera.tag) {
-                            case 'fumetto': %>
+                            case 'Fumetto': %>
                             <div class="card-header" style="background-color: #b02a37; color: white;">
-                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                                <%= fiera.tag %>
                             </div>
                             <% break;
 
-                            case 'artigianato': %>
+                            case 'Artigianato': %>
                             <div class="card-header" style="background-color: #cc9a06; color: white;">
-                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                                <%= fiera.tag %>
                             </div>
                             <% break;
 
-                            case 'nautica': %>
+                            case 'Nautica': %>
                             <div class="card-header" style="background-color: #0a58ca; color: white;">
-                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                                <%= fiera.tag %>
                             </div>
                             <% break;
 
-                            case 'cucina': %>
+                            case 'Cucina': %>
                             <div class="card-header" style="background-color: #ca6510; color: white;">
-                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                                <%= fiera.tag %>
                             </div>
                             <% break;
 
-                            case 'agricoltura': %>
+                            case 'Agricoltura': %>
                             <div class="card-header" style="background-color: #146c43; color: white;">
-                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                                <%= fiera.tag %>
                             </div>
                             <% break;
 
-                            case 'tecnologia': %>
+                            case 'Tecnologia': %>
                             <div class="card-header" style="background-color: #6c757d; color: white;">
-                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                                <%= fiera.tag %>
                             </div>
                             <% break;
                         } %>
