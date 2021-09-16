@@ -1,28 +1,43 @@
 <%- include ('./partials/header.ejs') %>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm"></div>
-            <div class="col-sm">
-                <h2>
-                    <%= fiera.nome %>
-                </h2>
-                <img src="/images/fiere/<%= fiera.nome %>/1.jpg" alt="<%= fiera.nome %>">
-                <h1>Descrizione: </h1>
-                <p>
-                    <%= fiera.descrizione %>
-                </p>
-                <h1>Posti totali:</h1>
-                <h3>
-                    <%= fiera.postiTotali %>
-                </h3>
-                <h1>Posti rimanenti:</h1>
-                <h3>
-                    <%= fiera.postiRimanenti %>
-                </h3>
-                <a href="/<%= fiera.id %>">Clicca qui</a>
+    <div class="container">
+        <div style="margin: auto;">
+            <h2>
+                <%= fiera.nome %>
+            </h2>
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-75" src="/images/fiere/<%= fiera.nome %>/1.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-75" src="/images/fiere/<%= fiera.nome %>/1.jpg" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-75" src="/images/fiere/<%= fiera.nome %>/1.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only"></span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only"></span>
+                </a>
             </div>
-            <div class="col-sm"></div>
+            <h1>Descrizione: </h1>
+            <p>
+                <%= fiera.descrizione %>
+            </p>
+            <h1>Posti totali:</h1>
+            <h3>
+                <%= fiera.postiTotali %>
+            </h3>
+            <h1>Posti rimanenti:</h1>
+            <h3>
+                <%= fiera.postiRimanenti %>
+            </h3>
         </div>
     </div>
 

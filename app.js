@@ -21,10 +21,6 @@ app.use('/', require('./routes/index'));
 app.use('/fiera', require('./routes/fiera'))
 app.use('/user', require('./routes/user'));
 
-var url = new URL("http://localhost:3000/fiera/");
-url.searchParams.append('q', 'patata');
-console.log(url)
-
 // porta
 const port = process.env.PORT || 3000;
 

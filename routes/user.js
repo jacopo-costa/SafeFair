@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 const router = express.Router();
 
 router.get('/login', (req, res) => res.render('login'));
@@ -31,8 +32,8 @@ router.post('/register', (req, res) => {
             posizione
         });
     } else {
-        const exist = User.getUser({ email });
-        if(!exist){
+        const exist = User.checkExist(email);
+        if(exist){
             errors.push({ msg: 'Utente già presente' });
             res.render('register', {
                 errors,
@@ -43,42 +44,27 @@ router.post('/register', (req, res) => {
                 posizione
             });
         }
-        User.findOne({ email: email }).then(user => {
-            if (user) {
-                errors.push({ msg: 'Email già registrata' });
-                res.render('register', {
-                    errors,
-                    name,
-                    email,
-                    password,
-                    password2
-                });
-            } else {
-                const newUser = new User({
-                    name,
-                    email,
-                    password
-                });
 
-                bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if (err) throw err;
-                        newUser.password = hash;
-                        newUser
-                            .save()
-                            .then(user => {
-                                req.flash(
-                                    'success_msg',
-                                    'You are now registered and can log in'
-                                );
-                                res.redirect('/users/login');
-                            })
-                            .catch(err => console.log(err));
-                    });
-                });
-            }
-        });
-    }
+        // Hash password
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(password, salt, (err, hash) => {
+              if (err) throw err;
+              // Set password to hashed
+              password = hash;
+              // Save account
+              User.
+                .save()
+                .then(user => {
+                  req.flash(
+                    'success_msg',
+                    'You are now registered and can log in'
+                  );
+                  res.redirect('/users/login');
+                })
+                .catch(err => console.log(err));
+            });
+          });
+        }
 });
 
 module.exports = router;
