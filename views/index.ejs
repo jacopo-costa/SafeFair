@@ -6,32 +6,75 @@
             <div class="col">
                 <% for( const fiera of fiere ) { %>
                     <div class="card" style="width: 30rem; margin-bottom: 10px; margin-top: 10px;">
+                        <% switch (fiera.tag) {
+                            case 'fumetto': %>
+                            <div class="card-header" style="background-color: #b02a37; color: white;">
+                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                            </div>
+                            <% break;
+
+                            case 'artigianato': %>
+                            <div class="card-header" style="background-color: #cc9a06; color: white;">
+                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                            </div>
+                            <% break;
+
+                            case 'nautica': %>
+                            <div class="card-header" style="background-color: #0a58ca; color: white;">
+                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                            </div>
+                            <% break;
+
+                            case 'cucina': %>
+                            <div class="card-header" style="background-color: #ca6510; color: white;">
+                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                            </div>
+                            <% break;
+
+                            case 'agricoltura': %>
+                            <div class="card-header" style="background-color: #146c43; color: white;">
+                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                            </div>
+                            <% break;
+
+                            case 'tecnologia': %>
+                            <div class="card-header" style="background-color: #6c757d; color: white;">
+                                <%= fiera.tag.replace(/\b\w/g, l => l.toUpperCase()) %>
+                            </div>
+                            <% break;
+                        } %>
+
                         <img class="card-img-top" src="/images/fiere/<%= fiera.nome %>/1.jpg" alt="<%= fiera.nome %>">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <%= fiera.nome %>
                             </h5>
-                            <p class="card-text">
+                            <p class="card-text"
+                                style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;">
                                 <%= fiera.descrizione %>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium commodi recusandae, dicta molestiae aut, sunt debitis culpa, magnam quia nemo aperiam ad totam ipsum libero asperiores consectetur. Voluptas enim sapiente voluptatibus vero vitae velit dicta consequuntur consectetur, cumque ducimus delectus fugit dolores eius distinctio labore accusantium id explicabo eos doloremque?
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium commodi
+                                    recusandae, dicta molestiae aut, sunt debitis culpa, magnam quia nemo aperiam ad
+                                    totam ipsum libero asperiores consectetur. Voluptas enim sapiente voluptatibus vero
+                                    vitae velit dicta consequuntur consectetur, cumque ducimus delectus fugit dolores
+                                    eius distinctio labore accusantium id explicabo eos doloremque?
                             </p>
-                            <a href="/fiera/<%= fiera.id %>" class="btn btn-primary">Clicca qui</a>
+                            <a href="/fiera/<%= fiera.id %>" class="btn btn-primary">Vai alla fiera</a>
                         </div>
                     </div>
                     <% } %>
             </div>
-            
+
 
             <div class="col">
                 <div class="card" style="width: 30rem; margin-bottom: 10px; margin-top: 10px;">
-                <% for( const notizia of news ) { %>
-                    <h2>
-                        <%= notizia.news %>
-                    </h2>
-                    <small>
-                        <%= notizia.timestamp %>
-                    </small>
-                    <% } %>
+                    <% for( const notizia of news ) { %>
+                        <h2>
+                            <%= notizia.news %>
+                        </h2>
+                        <small>
+                            <%= notizia.timestamp %>
+                        </small>
+                        <% } %>
                 </div>
             </div>
             <div class="col-md-auto"></div>
@@ -39,4 +82,4 @@
     </div>
 
 
-    <%- include ('./partials/footer.ejs') %>
+<%- include ('./partials/footer.ejs') %>

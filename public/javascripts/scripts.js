@@ -1,9 +1,9 @@
 // Wait for page to load
-window.onload = function() {
+window.onload = function () {
   //Get the top button:
-  var scrollToTopBtn = document.getElementById('scrollToTopBtn');
-  scrollToTopBtn.addEventListener('click', scrollToTop);
-}
+  var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+  scrollToTopBtn.addEventListener("click", scrollToTop);
+};
 
 // Get the root of document
 var rootElement = document.documentElement;
@@ -12,6 +12,6 @@ var rootElement = document.documentElement;
 function scrollToTop() {
   rootElement.scrollTo({
     top: 0,
-    behavior: "smooth"
-  })
-};
+    behavior: "smooth",
+  });
+}
