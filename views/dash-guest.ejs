@@ -1,0 +1,28 @@
+<%- include ('./partials/header.ejs') %>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page">Iscrizioni</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+</ul>
+<div class="col">
+  <div class="card" style="width: 30rem; margin-bottom: 10px; margin-top: 10px">
+    <h2><%= user.nome %></h2>
+    <h2><%= user.email %></h2>
+    <h2><%= user.posizione %></h2>
+  </div>
+
+  <% for( const prenotazione of prenotazioni ) { %>
+  <h2><%=prenotazione.id %></h2>
+  <% } %> <% for( const fiera of fiere ) { %>
+  <h2><%=fiera.nome %></h2>
+  <% } %>
+</div>
+
+<%- include ('./partials/footer.ejs') %>

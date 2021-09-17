@@ -16,14 +16,17 @@
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
-
+    <link
+      href="/images/open-iconic/font/css/open-iconic-bootstrap.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
     <nav
       class="navbar navbar-expand-lg navbar-dark"
-      style="background-color: #052c65"
+      style="background-color: #052c65;"
     >
       <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:3000/">
@@ -69,8 +72,8 @@
                 class="nav-link active"
                 aria-current="page"
                 href="http://localhost:3000/user/login"
-                >Login</a
-              >
+                ><span class="oi oi-person"></span>
+              </a>
             </li>
           </ul>
           <form class="d-flex" action="/fiera/" method="GET">
@@ -83,7 +86,7 @@
               aria-label="Cerca"
             />
             <button class="btn btn-outline-success" type="submit">
-              Search
+              Cerca
             </button>
           </form>
         </div>

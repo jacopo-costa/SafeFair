@@ -1,14 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const db = require("../db");
 
 // Load User model
 const User = require("../models/user");
 const userSchema = require("../models/userSchema");
 
-router.get("/login", (req, res) => res.render("login"));
-router.get("/register", (req, res) => res.render("register"));
-router.get("/dashboard", (req, res) => res.send("Hello"));
+const { forwardAuthenticated } = require("../config/auth");
+
+router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
+router.get("/register", forwardAuthenticated, (req, res) =>
+  res.render("register")
+);
 
 // Register
 router.post("/register", (req, res) => {
@@ -88,14 +92,14 @@ router.post("/register", (req, res) => {
 // Login
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/user/dashboard",
+    successRedirect: "/dashboard",
     failureRedirect: "/user/login",
     failureFlash: true,
   })(req, res, next);
 });
 
 // Logout
-router.get("/logout", (req, res) => {
+router.get("/logout", forwardAuthenticated, (req, res) => {
   req.logout();
   req.flash("success_msg", "Logout completato");
   res.redirect("/users/login");

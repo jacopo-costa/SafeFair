@@ -1,13 +1,10 @@
 <%- include ('./partials/header.ejs') %>
 
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center row-cols-1 row-cols-md-2">
     <% for( const fiera of fiere ) { %>
     <div class="col">
-      <div
-        class="card"
-        style="width: 30em; margin: auto; margin-top: 10px;"
-      >
+      <div class="card" style="margin-top: 10px">
         <% switch (fiera.tag) { case 'Fumetto': %>
         <div
           class="card-header"
@@ -83,8 +80,7 @@
         </div>
       </div>
     </div>
-      <% } %>
-    
+    <% } %>
   </div>
 </div>
 

@@ -1,8 +1,8 @@
 const db = require("../db.js");
 const bcrypt = require("bcrypt");
 
-// Controlla che esista un utente dalla sua email
-exports.checkExist = function (email) {
+// Check if user exist by its email
+exports.checkExist = (email) => {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM utenti WHERE email = ?";
     db.get(sql, [email], (err, row) => {
@@ -15,8 +15,8 @@ exports.checkExist = function (email) {
   });
 };
 
-// Salva un utente
-exports.saveUser = function (user) {
+// Save the User on the DB
+exports.saveUser = (user) => {
   return new Promise((resolve, reject) => {
     const sql =
       "INSERT INTO utenti(nome, email, password, posizione, tipo, tag)  VALUES (?,?,?,?,?,?)";
@@ -39,8 +39,8 @@ exports.saveUser = function (user) {
   });
 };
 
-// Restituisce un utente attraverso emael password
-exports.getUser = function (email, password) {
+// Check email & password of the user and return it
+exports.getUser = (email, password) => {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM utenti WHERE email = ?";
     db.get(sql, [email], (err, row) => {
@@ -49,10 +49,7 @@ exports.getUser = function (email, password) {
       else {
         const user = {
           id: row.id,
-          nome: row.nome,
-          posizione: row.posizione,
-          tipo: row.tipo,
-          tag: row.tag,
+          username: row.email,
         };
         let check = false;
 
@@ -64,6 +61,7 @@ exports.getUser = function (email, password) {
   });
 };
 
+// Search an user by its ID
 exports.findById = (id) => {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM utenti WHERE id = ?";
@@ -73,10 +71,7 @@ exports.findById = (id) => {
       else {
         const user = {
           id: row.id,
-          nome: row.nome,
-          posizione: row.posizione,
-          tipo: row.tipo,
-          tag: row.tag,
+          username: row.email,
         };
         resolve(user);
       }

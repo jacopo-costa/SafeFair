@@ -1,7 +1,8 @@
 const express = require("express");
-const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -11,18 +12,26 @@ require("./config/passport")(passport);
 // DB Config
 const db = require("./db");
 
+// Errors visualizer
+app.use(function (err, req, res, next) {
+  console.log(err);
+});
+
 // EJS
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 // Express body parser
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+
+// Cookie parser
+app.use(cookieParser());
 
 // Express session
 app.use(
   session({
-    secret: "secret",
-    resave: true,
+    secret: "keyboard cat",
+    resave: false,
     saveUninitialized: true,
   })
 );
@@ -46,6 +55,7 @@ app.use(function (req, res, next) {
 app.use("/", require("./routes/index"));
 app.use("/fiera", require("./routes/fiera"));
 app.use("/user", require("./routes/user"));
+app.use("/dashboard", require("./routes/dashboard"));
 
 // porta
 const port = process.env.PORT || 3000;
