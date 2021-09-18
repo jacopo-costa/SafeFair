@@ -5,7 +5,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 
 // Dashboard
 router.get("/", ensureAuthenticated, (req, res) => {
-  db.get("SELECT * FROM Utenti WHERE id = " + req.user.id, (err, row) => {
+  db.get("SELECT * FROM utenti WHERE id = " + req.user.id, (err, row) => {
     if (err) {
       return console.error(err.message);
     }
@@ -13,19 +13,18 @@ router.get("/", ensureAuthenticated, (req, res) => {
     var tags = array.map((x) => "'" + x + "'").toString();
     if (row.tipo === "GUEST") {
       db.all(
-        "SELECT * FROM Prenotazioni WHERE id_utente = " + row.id,
+        "SELECT * FROM prenotazioni WHERE id_utente = " + row.id,
         (err, rows) => {
           if (err) {
             return console.error(err.message);
           }
 
           db.all(
-            "SELECT * FROM Fiere WHERE tag IN (" + tags + ")",
+            "SELECT * FROM fiere WHERE tag IN (" + tags + ")",
             (err, righe) => {
               if (err) {
                 return console.error(err.message);
               }
-              console.log(righe);
               res.render("dash-guest", {
                 user: row,
                 prenotazioni: rows,
@@ -37,14 +36,14 @@ router.get("/", ensureAuthenticated, (req, res) => {
       );
     } else {
       db.all(
-        "SELECT * FROM Esposizioni WHERE id_utente = " + row.id,
+        "SELECT * FROM esposizioni WHERE id_utente = " + row.id,
         (err, rows) => {
           if (err) {
             return console.error(err.message);
           }
 
           db.all(
-            "SELECT * FROM Fiere WHERE tag IN (" + tags + ")",
+            "SELECT * FROM fiere WHERE tag IN (" + tags + ")",
             (err, righe) => {
               if (err) {
                 return console.error(err.message);

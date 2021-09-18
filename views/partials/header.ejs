@@ -26,14 +26,14 @@
   <body>
     <nav
       class="navbar navbar-expand-lg navbar-dark"
-      style="background-color: #052c65;"
+      style="background-color: #052c65"
     >
       <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:3000/">
           <img
             src="/images/logo.png"
             width="auto"
-            height="20"
+            height="30"
             class="mx-auto d-block"
             alt="SafeFair"
           />
@@ -50,7 +50,21 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <form
+            class="d-flex mx-auto me-auto mb-auto"
+            action="/fiera/"
+            method="GET"
+          >
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Cerca"
+              id="q"
+              name="q"
+              aria-label="Cerca"
+            />
+          </form>
+          <ul class="navbar-nav mb-auto">
             <li class="nav-item">
               <a
                 class="nav-link active"
@@ -68,29 +82,17 @@
               >
             </li>
             <li class="nav-item">
+              <button type="button" class="btn btn-outline-light">
               <a
-                class="nav-link active"
                 aria-current="page"
+                class="text-decoration-none"
                 href="http://localhost:3000/user/login"
+                style="color: #17a2b8;"
                 ><span class="oi oi-person"></span>
               </a>
+            </button>
             </li>
           </ul>
-          <form class="d-flex" action="/fiera/" method="GET">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Cerca"
-              id="q"
-              name="q"
-              aria-label="Cerca"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Cerca
-            </button>
-          </form>
         </div>
       </div>
     </nav>
-  </body>
-</html>

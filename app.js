@@ -57,6 +57,10 @@ app.use("/fiera", require("./routes/fiera"));
 app.use("/user", require("./routes/user"));
 app.use("/dashboard", require("./routes/dashboard"));
 
+app.get("/contatti", (req,res) => {
+  res.render("contatti");
+})
+
 // porta
 const port = process.env.PORT || 3000;
 
