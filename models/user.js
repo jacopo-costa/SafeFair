@@ -1,7 +1,7 @@
 const db = require("../db.js");
 const bcrypt = require("bcrypt");
 
-// Check if user exist by its email
+// Controlla se l'utente esiste dalla email
 exports.checkExist = (email) => {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM utenti WHERE email = ?";
@@ -15,7 +15,7 @@ exports.checkExist = (email) => {
   });
 };
 
-// Save the User on the DB
+// Salva l'utente nel DB
 exports.saveUser = (user) => {
   return new Promise((resolve, reject) => {
     const sql =
@@ -39,7 +39,8 @@ exports.saveUser = (user) => {
   });
 };
 
-// Check email & password of the user and return it
+// Controlla la email e la password dell'utente e lo ritorna
+// con il check
 exports.getUser = (email, password) => {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM utenti WHERE email = ?";
@@ -50,6 +51,7 @@ exports.getUser = (email, password) => {
         const user = {
           id: row.id,
           username: row.email,
+          tipo: row.tipo,
         };
         let check = false;
 
@@ -61,7 +63,7 @@ exports.getUser = (email, password) => {
   });
 };
 
-// Search an user by its ID
+// Cerca un utente per il suo ID
 exports.findById = (id) => {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM utenti WHERE id = ?";
@@ -72,6 +74,8 @@ exports.findById = (id) => {
         const user = {
           id: row.id,
           username: row.email,
+          tipo: row.tipo,
+          tags: row.tag,
         };
         resolve(user);
       }

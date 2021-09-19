@@ -7,7 +7,7 @@ const db = require("../db");
 const User = require("../models/user");
 const userSchema = require("../models/userSchema");
 
-const { forwardAuthenticated } = require("../config/auth");
+const { forwardAuthenticated, ensureAuthenticated } = require("../config/auth");
 
 router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
 router.get("/register", forwardAuthenticated, (req, res) =>
@@ -99,10 +99,10 @@ router.post("/login", (req, res, next) => {
 });
 
 // Logout
-router.get("/logout", forwardAuthenticated, (req, res) => {
+router.get("/logout", ensureAuthenticated, (req, res) => {
   req.logout();
   req.flash("success_msg", "Logout completato");
-  res.redirect("/users/login");
+  res.redirect("/user/login");
 });
 
 module.exports = router;

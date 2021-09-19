@@ -2,8 +2,9 @@ const express = require("express");
 const db = require("../db");
 const router = express.Router();
 const User = require("../models/user");
+const Pren = require("../models/prenotazioni");
 
-const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
+const { ensureAuthenticated } = require("../config/auth");
 
 router.get("/all", (req, res) => {
   db.all("SELECT * FROM Fiere", [], (err, rows) => {
@@ -41,52 +42,32 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/prenota/:id", ensureAuthenticated, (req, res) => {
-  User.findById(req.user.id)
-  .then((user) => {
-    if(user.tipo === "SELLER"){
-      req.flash("error_msg", "Sei un SELLER, non puoi prenotare posti");
-      res.redirect("/");
-    }
-  });
+router.get("/prenota/:id", ensureAuthenticated, async (req, res) => {
+  
+  // Ottiene l'utente
+  var user = await User.findById(req.user.id);
 
-  // db.get(
-  //   "SELECT * FROM prenotazioni WHERE id_utente = ?",
-  //   [req.user.id],
-  //   (err, row) => {
-  //     if (err) {
-  //       return console.error(err.message);
-  //     } else if (row) {
-  //       req.flash("error_msg", "Prenotazione già effettuata");
-  //       res.redirect("/dashboard");
-  //       return;
-  //     }
-  //   }
-  // );
+  // Se un seller manda un errore e ritorna alla dashboard
+  if (user.tipo === "SELLER") {
+    req.flash("error_msg", "Un venditore non può prenotare posti");
+    res.redirect("/dashboard");
+  }
 
-  // // Genera un ID prenotazione casuale
-  // var idPrenotazione = Math.floor(Math.random() * 100000000);
+  // Ottiene le prenotazioni per utente e fiera
+  var prenotazioni = await Pren.getPren(req.user.id, req.params.id);
+  if (prenotazioni == undefined) {
+    
+    // Genera un ID prenotazione casuale
+    var idPrenotazione = Math.floor(Math.random() * 100000000);
+    await Pren.savePren(req.user.id, req.params.id, idPrenotazione);
+    await Pren.decrement(req.params.id);
+    req.flash("success_msg", "Prenotazione effettuata con successo");
+    res.redirect("/dashboard");
 
-  // //Inserisce la prenotazione
-  // db.run(
-  //   "INSERT INTO prenotazioni (id_utente, id_fiera, id_prenotazione) VALUES (?,?,?)",
-  //   [req.user.id, req.params.id, idPrenotazione],
-  //   (err) => {
-  //     if (err) {
-  //       return console.log(err.message);
-  //     }
-  //   }
-  // );
-  // // Decrementa i posti disponibili per la fiera
-  // db.run(
-  //   "UPDATE fiere SET postiRimanenti = postiRimanenti - 1 WHERE id = ?",
-  //   [req.params.id],
-  //   (err) => {
-  //     if (err) {
-  //       return console.log(err.message);
-  //     }
-  //   }
-  // );
+  } else {
+    req.flash("error_msg", "Prenotazione già presente");
+    res.redirect("/dashboard");
+  }
 });
 
 module.exports = router;

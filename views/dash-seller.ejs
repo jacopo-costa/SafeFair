@@ -1,13 +1,107 @@
 <%- include ('./partials/header.ejs') %>
 <%- include ('./partials/messages.ejs') %>
 
-<h1>Hello!</h1>
-<div class="col">
-  <div class="card" style="width: 30rem; margin-bottom: 10px; margin-top: 10px">
-    <h2><%= user.nome %></h2>
-    <h2><%= user.email %></h2>
-    <h2><%= user.posizione %></h2>
-  </div>
-</div>
+<a href="/user/logout" class="btn btn-danger"
+  >Logout</a
+>
+
+<%= utente.username %> 
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page">Iscrizioni</a>
+    <div class="container">
+      <div class="row justify-content-center row-cols-1 row-cols-md-2">
+        <% for( const fiera of fairs ) { %>
+        <div class="col" style="min-width: 30rem;">
+          <div class="card mx-auto" style="margin-top: 10px;">
+            <% switch (fiera.tag) { case 'Fumetto' : %>
+            <div
+              class="card-header"
+              style="background-color: #b02a37; color: white"
+            >
+              <%= fiera.tag %>
+            </div>
+            <% break; case 'Artigianato' : %>
+            <div
+              class="card-header"
+              style="background-color: #cc9a06; color: white"
+            >
+              <%= fiera.tag %>
+            </div>
+            <% break; case 'Nautica' : %>
+            <div
+              class="card-header"
+              style="background-color: #0a58ca; color: white"
+            >
+              <%= fiera.tag %>
+            </div>
+            <% break; case 'Cucina' : %>
+            <div
+              class="card-header"
+              style="background-color: #ca6510; color: white"
+            >
+              <%= fiera.tag %>
+            </div>
+            <% break; case 'Agricoltura' : %>
+            <div
+              class="card-header"
+              style="background-color: #146c43; color: white"
+            >
+              <%= fiera.tag %>
+            </div>
+            <% break; case 'Tecnologia' : %>
+            <div
+              class="card-header"
+              style="background-color: #6c757d; color: white"
+            >
+              <%= fiera.tag %>
+            </div>
+            <% break; } %>
+
+            <img
+              class="card-img-top"
+              src="/images/fiere/<%= fiera.nome %>/1.jpg"
+              alt="<%= fiera.nome %>"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= fiera.nome %></h5>
+              <p
+                class="card-text"
+                style="
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 4;
+                  -webkit-box-orient: vertical;
+                "
+              >
+                <%= fiera.descrizione %> Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Praesentium commodi recusandae, dicta
+                molestiae aut, sunt debitis culpa, magnam quia nemo aperiam ad
+                totam ipsum libero asperiores consectetur. Voluptas enim
+                sapiente voluptatibus vero vitae velit dicta consequuntur
+                consectetur, cumque ducimus delectus fugit dolores eius
+                distinctio labore accusantium id explicabo eos doloremque?
+              </p>
+              <a href="/fiera/<%= fiera.id %>" class="btn btn-primary"
+                >Vai alla fiera</a
+              >
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Test</a>
+    <h2>Test</h2>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+</ul>
+
 
 <%- include ('./partials/footer.ejs') %>

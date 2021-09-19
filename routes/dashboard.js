@@ -1,65 +1,30 @@
 const express = require("express");
 const db = require("../db");
 const router = express.Router();
-const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
+
+const User = require("../models/user");
+const Pren = require("../models/prenotazioni");
+const Fiere = require("../models/fiere");
+const { ensureAuthenticated } = require("../config/auth");
 
 // Dashboard
-router.get("/", ensureAuthenticated, (req, res) => {
-  db.get("SELECT * FROM utenti WHERE id = " + req.user.id, (err, row) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    var array = row.tag.split(",");
-    var tags = array.map((x) => "'" + x + "'").toString();
-    if (row.tipo === "GUEST") {
-      db.all(
-        "SELECT * FROM prenotazioni WHERE id_utente = " + row.id,
-        (err, rows) => {
-          if (err) {
-            return console.error(err.message);
-          }
+router.get("/", ensureAuthenticated, async (req, res) => {
+  var user = await User.findById(req.user.id);
 
-          db.all(
-            "SELECT * FROM fiere WHERE tag IN (" + tags + ")",
-            (err, righe) => {
-              if (err) {
-                return console.error(err.message);
-              }
-              res.render("dash-guest", {
-                user: row,
-                prenotazioni: rows,
-                fiere: righe,
-              });
-            }
-          );
-        }
-      );
-    } else {
-      db.all(
-        "SELECT * FROM esposizioni WHERE id_utente = " + row.id,
-        (err, rows) => {
-          if (err) {
-            return console.error(err.message);
-          }
+  var array = user.tags.split(",");
+  var tags = array.map((x) => "'" + x + "'").toString();
 
-          db.all(
-            "SELECT * FROM fiere WHERE tag IN (" + tags + ")",
-            (err, righe) => {
-              if (err) {
-                return console.error(err.message);
-              }
+  if (user.tipo === "GUEST") {
+    var pren = await Pren.getAllPren(req.user.id);
+    var fair = await Fiere.getFiereByTags(tags);
 
-              res.render("dash-guest", {
-                user: row,
-                esposizioni: rows,
-                fiere: righe,
-              });
-            }
-          );
-        }
-      );
-    }
-  });
+    res.render("dash-guest", { utente: user, prenotazioni: pren, fairs: fair });
+  } else {
+    //var exp = await Fiere.getExp(req.user.id);
+    var fair = await Fiere.getFiereByTags(tags);
+
+    res.render("dash-seller", { utente: user, fairs: fair });
+  }
 });
 
 module.exports = router;
