@@ -64,5 +64,5 @@ app.get("/contatti", (req,res) => {
 // porta
 const port = process.env.PORT || 3000;
 
-// Ascolta sulla porta 3000
+// Ascolta sulla porta
 app.listen(port, console.info(`Ascolto su porta ${port}`));

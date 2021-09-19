@@ -5,103 +5,23 @@
   >Logout</a
 >
 
-<%= utente.username %> 
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page">Iscrizioni</a>
-    <div class="container">
-      <div class="row justify-content-center row-cols-1 row-cols-md-2">
-        <% for( const fiera of fairs ) { %>
-        <div class="col" style="min-width: 30rem;">
-          <div class="card mx-auto" style="margin-top: 10px;">
-            <% switch (fiera.tag) { case 'Fumetto' : %>
-            <div
-              class="card-header"
-              style="background-color: #b02a37; color: white"
-            >
-              <%= fiera.tag %>
-            </div>
-            <% break; case 'Artigianato' : %>
-            <div
-              class="card-header"
-              style="background-color: #cc9a06; color: white"
-            >
-              <%= fiera.tag %>
-            </div>
-            <% break; case 'Nautica' : %>
-            <div
-              class="card-header"
-              style="background-color: #0a58ca; color: white"
-            >
-              <%= fiera.tag %>
-            </div>
-            <% break; case 'Cucina' : %>
-            <div
-              class="card-header"
-              style="background-color: #ca6510; color: white"
-            >
-              <%= fiera.tag %>
-            </div>
-            <% break; case 'Agricoltura' : %>
-            <div
-              class="card-header"
-              style="background-color: #146c43; color: white"
-            >
-              <%= fiera.tag %>
-            </div>
-            <% break; case 'Tecnologia' : %>
-            <div
-              class="card-header"
-              style="background-color: #6c757d; color: white"
-            >
-              <%= fiera.tag %>
-            </div>
-            <% break; } %>
-
-            <img
-              class="card-img-top"
-              src="/images/fiere/<%= fiera.nome %>/1.jpg"
-              alt="<%= fiera.nome %>"
-            />
-            <div class="card-body">
-              <h5 class="card-title"><%= fiera.nome %></h5>
-              <p
-                class="card-text"
-                style="
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  display: -webkit-box;
-                  -webkit-line-clamp: 4;
-                  -webkit-box-orient: vertical;
-                "
-              >
-                <%= fiera.descrizione %> Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Praesentium commodi recusandae, dicta
-                molestiae aut, sunt debitis culpa, magnam quia nemo aperiam ad
-                totam ipsum libero asperiores consectetur. Voluptas enim
-                sapiente voluptatibus vero vitae velit dicta consequuntur
-                consectetur, cumque ducimus delectus fugit dolores eius
-                distinctio labore accusantium id explicabo eos doloremque?
-              </p>
-              <a href="/fiera/<%= fiera.id %>" class="btn btn-primary"
-                >Vai alla fiera</a
-              >
-            </div>
-          </div>
-        </div>
-        <% } %>
-      </div>
-    </div>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="iscrizioni" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Iscrizioni</button>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Test</a>
-    <h2>Test</h2>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="prenotazioni" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Prenotazioni</button>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="modifica" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Modifica</button>
   </li>
 </ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="iscrizioni">Iscrizioni</div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="prenotazioni">Prenotazioni</div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="modifica">Modifica</div>
+</div>
 
 
 <%- include ('./partials/footer.ejs') %>

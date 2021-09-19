@@ -76,6 +76,7 @@ exports.findById = (id) => {
           username: row.email,
           tipo: row.tipo,
           tags: row.tag,
+          nome: row.nome
         };
         resolve(user);
       }

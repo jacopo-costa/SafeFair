@@ -1,14 +1,14 @@
 <%- include ('./partials/header.ejs') %>
 <div class="row">
   <div class="col">
-    <h1 class="display-4 text-center" style="margin-top: 10px">
-      Ultime fiere:
+    <h1 class="display-4 text-center" style="margin: 1rem">
+      <span class="oi oi-calendar"></span> Ultime fiere:
     </h1>
     <div class="container">
       <div class="row justify-content-center row-cols-1 row-cols-md-2">
         <% for( const fiera of fiere ) { %>
         <div class="col" style="min-width: 30rem;">
-          <div class="card mx-auto" style="margin-top: 10px;">
+          <div class="card mx-auto" style="margin-bottom: 1rem;">
             <% switch (fiera.tag) { case 'Fumetto' : %>
             <div
               class="card-header"
@@ -90,11 +90,11 @@
   </div>
 
   <div class="col-sm-auto">
-    <h1 class="display-4 text-center" style="margin-top: 10px">News:</h1>
+    <h1 class="display-4 text-center" style="margin: 1rem"><span class="oi oi-rss"></span> News:</h1>
     <% for( const notizia of news ) { %>
     <div
       class="card mx-auto border-info mb-3"
-      style="width: 30rem; margin-top: 20px"
+      style="width: 30rem; margin-bottom: 1rem"
     >
       <div class="card-header"><%= notizia.timestamp %></div>
       <div class="card-body">
