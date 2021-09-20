@@ -3,7 +3,7 @@ const db = require("../db");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  db.all("SELECT * FROM Fiere ORDER BY id limit 5", [], (err, rows) => {
+  db.all("SELECT * FROM Fiere ORDER BY id limit 4", [], (err, rows) => {
     if (err) {
       return console.error(err.message);
     }

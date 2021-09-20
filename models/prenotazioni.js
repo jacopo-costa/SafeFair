@@ -23,6 +23,17 @@ exports.getExp = (idVenditore, idFiera) => {
   });
 };
 
+// Ottiene tutte le esposizioni per utente
+exports.getAllExp = (idVenditore) => {
+  return new Promise((resolve, reject) => {
+    const sql = "SELECT * FROM esposizioni WHERE idVenditore = ?";
+    db.all(sql, [idVenditore], (err, rows) => {
+      if (err) reject(err);
+      else resolve(rows);
+    });
+  });
+};
+
 // Ottiene tutte le prenotazioni per utente
 exports.getAllPren = (idUtente) => {
   return new Promise((resolve, reject) => {

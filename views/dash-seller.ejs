@@ -1,27 +1,163 @@
-<%- include ('./partials/header.ejs') %>
-<%- include ('./partials/messages.ejs') %>
+<%- include ('./partials/header.ejs') %> <%- include ('./partials/messages.ejs')
+%>
 
-<a href="/user/logout" class="btn btn-danger"
-  >Logout</a
->
-
-
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="iscrizioni" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Iscrizioni</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="prenotazioni" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Prenotazioni</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="modifica" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Modifica</button>
-  </li>
-</ul>
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="iscrizioni">Iscrizioni</div>
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="prenotazioni">Prenotazioni</div>
-  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="modifica">Modifica</div>
+<div style="display: flex; justify-content: flex-end; margin: 1rem">
+  <a href="/user/logout" class="btn btn-danger">Logout</a>
 </div>
 
+<h1 class="text-center" style="margin-bottom: 4rem">
+  <span class="oi oi-home"></span> Benvenuto <%= utente.nome %>!
+</h1>
+
+<div class="col" style="margin: 2rem">
+  <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="iscrizioni"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-home"
+        type="button"
+        role="tab"
+        aria-controls="pills-home"
+        aria-selected="true"
+      >
+        Iscrizioni
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="esposizioni"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-profile"
+        type="button"
+        role="tab"
+        aria-controls="pills-profile"
+        aria-selected="false"
+      >
+        Esposizioni
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="modifica"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-contact"
+        type="button"
+        role="tab"
+        aria-controls="pills-contact"
+        aria-selected="false"
+      >
+        Modifica
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div
+      class="tab-pane fade show active"
+      id="pills-home"
+      role="tabpanel"
+      aria-labelledby="iscrizioni"
+    >
+      <div class="container">
+        <div class="row justify-content-center row-cols-1 row-cols-md-2">
+          <% for( const fiera of fairs ) { %>
+          <div class="col">
+            <div class="card" style="margin-top: 1rem">
+              <% switch (fiera.tag) { case 'Fumetto': %>
+              <div
+                class="card-header"
+                style="background-color: #b02a37; color: white"
+              >
+                <%= fiera.tag %>
+              </div>
+              <% break; case 'Artigianato': %>
+              <div
+                class="card-header"
+                style="background-color: #cc9a06; color: white"
+              >
+                <%= fiera.tag %>
+              </div>
+              <% break; case 'Nautica': %>
+              <div
+                class="card-header"
+                style="background-color: #0a58ca; color: white"
+              >
+                <%= fiera.tag %>
+              </div>
+              <% break; case 'Cucina': %>
+              <div
+                class="card-header"
+                style="background-color: #ca6510; color: white"
+              >
+                <%= fiera.tag %>
+              </div>
+              <% break; case 'Agricoltura': %>
+              <div
+                class="card-header"
+                style="background-color: #146c43; color: white"
+              >
+                <%= fiera.tag %>
+              </div>
+              <% break; case 'Tecnologia': %>
+              <div
+                class="card-header"
+                style="background-color: #6c757d; color: white"
+              >
+                <%= fiera.tag %>
+              </div>
+              <% break; } %>
+
+              <img
+                class="card-img-top photo"
+                src="/images/fiere/<%= fiera.nome %>/1.jpg"
+                alt="<%= fiera.nome %>"
+              />
+              <div class="card-body">
+                <h5 class="card-title"><%= fiera.nome %></h5>
+                <p
+                  class="card-text"
+                  style="
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 4;
+                    -webkit-box-orient: vertical;
+                  "
+                >
+                  <%= fiera.descrizione %>
+                </p>
+                <a href="/fiera/<%= fiera.id %>" class="btn btn-primary"
+                  >Vai alla fiera</a
+                >
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-profile"
+      role="tabpanel"
+      aria-labelledby="esposizioni"
+    >
+      <% for( const exp of esposizioni ) { %>
+      <h1><%= exp.id %></h1>
+      <% } %>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-contact"
+      role="tabpanel"
+      aria-labelledby="modifica"
+    >
+      Modifica
+    </div>
+  </div>
+</div>
 
 <%- include ('./partials/footer.ejs') %>

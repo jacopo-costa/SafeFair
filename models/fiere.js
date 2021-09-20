@@ -1,6 +1,6 @@
 const db = require("../db.js");
 
-// Ottiene le prenotazioni per utente e fiera
+// Ottiene le fiere per tag
 exports.getFiereByTags = (tags) => {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM fiere WHERE tag IN (" + tags + ")";
@@ -11,6 +11,16 @@ exports.getFiereByTags = (tags) => {
   });
 };
 
+// Ottiene le fiera
+exports.getAllFiere = () => {
+  return new Promise((resolve, reject) => {
+    const sql = "SELECT * FROM fiere";
+    db.all(sql, [], (err, rows) => {
+      if (err) reject(err);
+      else resolve(rows);
+    });
+  });
+};
 
 // Ottiene le esposizioni per utente
 exports.getExp = (idUtente) => {
