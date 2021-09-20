@@ -1,6 +1,7 @@
-// Wait for page to load
+// Aspetta che la pagina carichi del tutto
 window.onload = function () {
-  //Get the top button:
+  
+  // Funzione per il pulsante per tornare in cuima
   var scrollToTopBtn = document.getElementById("scrollToTopBtn");
   scrollToTopBtn.addEventListener("click", scrollToTop);
 };
@@ -16,9 +17,12 @@ function scrollToTop() {
   });
 }
 
-$(document).ready(function(){
-  $('.modal').modal('show');
-});
+function close_window() {
+  if (confirm("Chiudere la scheda?")) {
+    close();
+  }
+}
 
+// Carosello nelle pagine fiera
 var myCarousel = document.querySelector('#myCarousel')
 var carousel = new bootstrap.Carousel(myCarousel)

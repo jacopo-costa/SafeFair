@@ -1,12 +1,12 @@
 const LocalStrategy = require("passport-local").Strategy;
 
-// Load User model
+// Carica il modello per l'utente
 const User = require("../models/user");
 
 module.exports = function (passport) {
   passport.use(
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
-      // Match user & password
+      // Controlla email e password
       User.getUser(email, password)
         .then(({ user, check }) => {
           if (!check) {

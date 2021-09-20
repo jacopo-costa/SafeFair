@@ -8,7 +8,7 @@
       </h1>
       <%- include ('./partials/messages.ejs') %>
       <form action="/user/register" method="POST">
-        <div class="form-group" style="margin: 10px">
+        <div class="form-group">
           <label for="nome">Username</label>
           <input
             type="nome"
@@ -19,7 +19,7 @@
             value="<%= typeof nome != 'undefined' ? nome : '' %>"
           />
         </div>
-        <div class="form-group" style="margin: 10px">
+        <div class="form-group">
           <label for="email">Email</label>
           <input
             type="email"
@@ -30,7 +30,7 @@
             value="<%= typeof email != 'undefined' ? email : '' %>"
           />
         </div>
-        <div class="form-group" style="margin: 10px">
+        <div class="form-group">
           <label for="password">Password</label>
           <input
             type="password"
@@ -41,7 +41,7 @@
             value="<%= typeof password != 'undefined' ? password : '' %>"
           />
         </div>
-        <div class="form-group" style="margin: 10px">
+        <div class="form-group">
           <label for="password2">Conferma Password</label>
           <input
             type="password"
@@ -52,7 +52,7 @@
             value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
           />
         </div>
-        <div class="form-group" style="margin: 10px">
+        <div class="form-group">
           <label for="posizione">Posizione</label>
           <input
             type="text"
@@ -152,7 +152,7 @@
             </label>
           </div>
         </fieldset>
-        <div style="margin-top: 20px">
+        <div style="margin-top: 1rem">
           <button type="submit" class="btn btn-primary">Invia</button>
         </div>
       </form>

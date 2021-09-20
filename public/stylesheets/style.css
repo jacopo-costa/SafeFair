@@ -20,11 +20,27 @@
 }
 
 .border-info {
-    border-width: 2px;
+  border-width: 2px;
 }
 
 .photo {
   object-fit: cover;
   width: auto;
   height: 20rem;
+}
+
+.form-group {
+  margin: 1rem;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #1dc8e2 !important;
+}
+
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }

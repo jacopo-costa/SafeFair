@@ -11,6 +11,17 @@ exports.getFiereByTags = (tags) => {
   });
 };
 
+// Ottiene le fiere per posizione
+exports.getFiereByPos = (pos) => {
+  return new Promise((resolve, reject) => {
+    const sql = "SELECT * FROM fiere WHERE (posizione LIKE '%" + pos + "%')"
+    db.all(sql, [], (err, rows) => {
+      if (err) reject(err);
+      else resolve(rows);
+    });
+  });
+};
+
 // Ottiene le fiera
 exports.getAllFiere = () => {
   return new Promise((resolve, reject) => {

@@ -15,6 +15,33 @@ exports.checkExist = (email) => {
   });
 };
 
+// Cambia la posizione dell'utente
+exports.changePos = (idUtente, pos) => {
+  return new Promise((resolve, reject) => {
+    const sql = "UPDATE utenti SET posizione = ? WHERE id = ?";
+    db.run(sql, [pos, idUtente], (err) => {
+      if (err) reject(err);
+      else {
+        resolve();
+      }
+    });
+  });
+};
+
+// Cambia i tag
+exports.changeTags = (idUtente, tags) => {
+  return new Promise((resolve, reject) => {
+    const sql = "UPDATE utenti SET tag = ? WHERE id = ?";
+    db.run(sql, [tags, idUtente], (err) => {
+      if (err) reject(err);
+      else {
+        resolve();
+      }
+    });
+  });
+};
+
+
 // Salva l'utente nel DB
 exports.saveUser = (user) => {
   return new Promise((resolve, reject) => {
@@ -76,7 +103,8 @@ exports.findById = (id) => {
           username: row.email,
           tipo: row.tipo,
           tags: row.tag,
-          nome: row.nome
+          nome: row.nome,
+          posizione: row.posizione,
         };
         resolve(user);
       }

@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const db = require("../db");
 
-// Load User model
+// Carica i modelli per Utente
 const User = require("../models/user");
 const userSchema = require("../models/userSchema");
 
+// Controllo se l'utente è loggato
 const { forwardAuthenticated, ensureAuthenticated } = require("../config/auth");
 
 router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
@@ -14,7 +14,7 @@ router.get("/register", forwardAuthenticated, (req, res) =>
   res.render("register")
 );
 
-// Register
+// Registrazione
 router.post("/register", (req, res) => {
   var { nome, email, password, password2, posizione } = req.body;
   let errors = [];
@@ -103,6 +103,35 @@ router.get("/logout", ensureAuthenticated, (req, res) => {
   req.logout();
   req.flash("success_msg", "Logout completato");
   res.redirect("/user/login");
+});
+
+// Cambia la posizione
+router.post("/changePos", (req, res) => {
+  User.changePos(req.user.id, req.body.pos)
+    .then(function () {
+      req.flash("success_msg", "Posizione cambiata!");
+      res.redirect("/dashboard");
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+});
+
+// Cambia i tag
+router.post("/changeTags", (req, res) => {
+  var form = req.body;
+  var tags = Object.keys(form)
+          .filter((key) => form[key] === "on" && key !== "tipo")
+          .toString();
+
+  User.changeTags(req.user.id, tags)
+    .then(function () {
+      req.flash("success_msg", "Tags cambiati!");
+      res.redirect("/dashboard");
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
 });
 
 module.exports = router;

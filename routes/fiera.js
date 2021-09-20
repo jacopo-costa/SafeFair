@@ -6,6 +6,7 @@ const Pren = require("../models/prenotazioni");
 
 const { ensureAuthenticated } = require("../config/auth");
 
+// Mostra tutte le fiere
 router.get("/all", (req, res) => {
   db.all("SELECT * FROM Fiere", [], (err, rows) => {
     if (err) {
@@ -15,6 +16,7 @@ router.get("/all", (req, res) => {
   });
 });
 
+// Mostra una fiera per ID
 router.get("/:id", (req, res) => {
   db.get("SELECT * FROM Fiere WHERE id = " + req.params.id, (err, row) => {
     if (err) {
@@ -24,6 +26,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
+// GET di ricerca
 router.get("/", (req, res) => {
   var q = req.query.q;
   var string =
@@ -42,6 +45,7 @@ router.get("/", (req, res) => {
   });
 });
 
+// Prenota una fiera dal suo ID
 router.get("/prenota/:id", ensureAuthenticated, async (req, res) => {
   // Ottiene l'utente
   var user = await User.findById(req.user.id);
@@ -72,6 +76,23 @@ router.get("/prenota/:id", ensureAuthenticated, async (req, res) => {
       req.flash("error_msg", "Prenotazione già presente");
       res.redirect("/dashboard");
     }
+  }
+});
+
+// Elimina una prenotazione dall'ID della fiera e dell'utente
+router.get("/elimina/:id", ensureAuthenticated, async (req, res) => {
+  // Ottiene l'utente
+  var user = await User.findById(req.user.id);
+
+  if (user.tipo === "SELLER") {
+    await Pren.deleteExp(req.user.id, req.params.id);
+    req.flash("success_msg", "Esposizione eliminata con successo");
+    res.redirect("/dashboard");
+  } else {
+    await Pren.deletePren(req.user.id, req.params.id);
+    await Pren.increment(req.params.id);
+    req.flash("success_msg", "Prenotazione eliminata con successo");
+    res.redirect("/dashboard");
   }
 });
 

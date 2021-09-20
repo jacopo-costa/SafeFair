@@ -1,3 +1,4 @@
+// Imports
 const express = require("express");
 const passport = require("passport");
 const flash = require("connect-flash");
@@ -57,11 +58,12 @@ app.use("/fiera", require("./routes/fiera"));
 app.use("/user", require("./routes/user"));
 app.use("/dashboard", require("./routes/dashboard"));
 
+// Handler contatti
 app.get("/contatti", (req,res) => {
   res.render("contatti");
 })
 
-// porta
+// Porta
 const port = process.env.PORT || 3000;
 
 // Ascolta sulla porta

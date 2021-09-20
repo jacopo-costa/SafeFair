@@ -1,5 +1,6 @@
-<%- include ('./partials/header.ejs') %> <%- include ('./partials/messages.ejs')
-%>
+<%- include ('./partials/header.ejs') %>
+
+<div style="margin: 2rem"><%- include ('./partials/messages.ejs') %></div>
 
 <div style="display: flex; justify-content: flex-end; margin: 1rem">
   <a href="/user/logout" class="btn btn-danger">Logout</a>
@@ -16,10 +17,10 @@
         class="nav-link active"
         id="iscrizioni"
         data-bs-toggle="pill"
-        data-bs-target="#pills-home"
+        data-bs-target="#pills-iscrizioni"
         type="button"
         role="tab"
-        aria-controls="pills-home"
+        aria-controls="pills-iscrizioni"
         aria-selected="true"
       >
         Iscrizioni
@@ -28,12 +29,26 @@
     <li class="nav-item" role="presentation">
       <button
         class="nav-link"
-        id="esposizioni"
+        id="nearme"
         data-bs-toggle="pill"
-        data-bs-target="#pills-profile"
+        data-bs-target="#pills-nearme"
         type="button"
         role="tab"
-        aria-controls="pills-profile"
+        aria-controls="pills-nearme"
+        aria-selected="false"
+      >
+        Vicine a me
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="esposizioni"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-esposizioni"
+        type="button"
+        role="tab"
+        aria-controls="pills-esposizioni"
         aria-selected="false"
       >
         Esposizioni
@@ -44,10 +59,10 @@
         class="nav-link"
         id="modifica"
         data-bs-toggle="pill"
-        data-bs-target="#pills-contact"
+        data-bs-target="#pills-modifica"
         type="button"
         role="tab"
-        aria-controls="pills-contact"
+        aria-controls="pills-modifica"
         aria-selected="false"
       >
         Modifica
@@ -57,13 +72,13 @@
   <div class="tab-content" id="pills-tabContent">
     <div
       class="tab-pane fade show active"
-      id="pills-home"
+      id="pills-iscrizioni"
       role="tabpanel"
       aria-labelledby="iscrizioni"
     >
       <div class="container">
         <div class="row justify-content-center row-cols-1 row-cols-md-2">
-          <% for( const fiera of fairs ) { %>
+          <% for( const fiera of subscribed ) { %>
           <div class="col">
             <div class="card" style="margin-top: 1rem">
               <% switch (fiera.tag) { case 'Fumetto': %>
@@ -119,13 +134,6 @@
                 <h5 class="card-title"><%= fiera.nome %></h5>
                 <p
                   class="card-text"
-                  style="
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 4;
-                    -webkit-box-orient: vertical;
-                  "
                 >
                   <%= fiera.descrizione %>
                 </p>
@@ -139,23 +147,236 @@
         </div>
       </div>
     </div>
+
     <div
       class="tab-pane fade"
-      id="pills-profile"
+      id="pills-nearme"
+      role="tabpanel"
+      aria-labelledby="nearme"
+    >
+      <div class="container">
+        <div class="row justify-content-center row-cols-1 row-cols-md-2">
+          <% for( const near of nearme ) { %>
+          <div class="col">
+            <div class="card" style="margin-top: 1rem">
+              <% switch (near.tag) { case 'Fumetto': %>
+              <div
+                class="card-header"
+                style="background-color: #b02a37; color: white"
+              >
+                <%= near.tag %>
+              </div>
+              <% break; case 'Artigianato': %>
+              <div
+                class="card-header"
+                style="background-color: #cc9a06; color: white"
+              >
+                <%= near.tag %>
+              </div>
+              <% break; case 'Nautica': %>
+              <div
+                class="card-header"
+                style="background-color: #0a58ca; color: white"
+              >
+                <%= near.tag %>
+              </div>
+              <% break; case 'Cucina': %>
+              <div
+                class="card-header"
+                style="background-color: #ca6510; color: white"
+              >
+                <%= near.tag %>
+              </div>
+              <% break; case 'Agricoltura': %>
+              <div
+                class="card-header"
+                style="background-color: #146c43; color: white"
+              >
+                <%= near.tag %>
+              </div>
+              <% break; case 'Tecnologia': %>
+              <div
+                class="card-header"
+                style="background-color: #6c757d; color: white"
+              >
+                <%= near.tag %>
+              </div>
+              <% break; } %>
+
+              <img
+                class="card-img-top photo"
+                src="/images/fiere/<%= near.nome %>/1.jpg"
+                alt="<%= near.nome %>"
+              />
+              <div class="card-body">
+                <h5 class="card-title"><%= near.nome %></h5>
+                <p
+                  class="card-text"
+                >
+                  <%= near.descrizione %>
+                </p>
+                <a href="/fiera/<%= near.id %>" class="btn btn-primary"
+                  >Vai alla fiera</a
+                >
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    
+    <div
+      class="tab-pane fade"
+      id="pills-esposizioni"
       role="tabpanel"
       aria-labelledby="esposizioni"
     >
-      <% for( const exp of esposizioni ) { %>
-      <h1><%= exp.id %></h1>
-      <% } %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fiera</th>
+            <th scope="col">Data</th>
+            <th scope="col">Stato</th>
+            <th scope="col">Stand</th>
+            <th scope="col">Elimina</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% var i = 1; for( const exp of esposizioni ) { for(const fiera of
+          fiere) { if(exp.idFiera == fiera.id) { %>
+          <tr>
+            <th scope="row"><%= i %></th>
+            <td><%= fiera.nome %></td>
+            <td><%= fiera.dataInizio %> - <%= fiera.dataFine %></td>
+            <% if(exp.stato === 'In attesa') { %>
+            <td style="color: red"><%= exp.stato %></td>
+            <% } else { %>
+            <td style="color: green"><%= exp.stato %></td>
+            <% } %>
+            <td><%= exp.stand %></td>
+            <td>
+              <a href="/fiera/elimina/<%= fiera.id %>" class="btn btn-danger">
+                <span class="oi oi-x"></span></a>
+            </td>
+          </tr>
+          <% i ++; } } } %>
+        </tbody>
+      </table>
     </div>
+
     <div
       class="tab-pane fade"
-      id="pills-contact"
+      id="pills-modifica"
       role="tabpanel"
       aria-labelledby="modifica"
     >
-      Modifica
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-auto" style="margin: 2rem">
+            <h1 class="text-center">
+              <span class="oi oi-pencil"></span> Modifica
+            </h1>
+            <form action="/user/changePos" method="POST">
+              <div class="form-group">
+                <label for="posizione">Cambia la posizione</label>
+                <input
+                  type="text"
+                  id="pos"
+                  name="pos"
+                  class="form-control"
+                  placeholder="Inserisci una città"
+                  value="<%= typeof pos != 'undefined' ? pos : '' %>"
+                />
+              </div>
+              <div style="margin-top: 1rem">
+                <button type="submit" class="btn btn-primary">Invia</button>
+              </div>
+            </form>
+
+            <form action="/user/changeTags" method="POST">
+              <fieldset class="form-group">
+                <legend class="mt-4">Cambia i tags iscritti</legend>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="Fumetto"
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault"
+                    >Fumetto
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="Artigianato"
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Artigianato
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="Nautica"
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Nautica
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="Cucina"
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Cucina
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="Agricoltura"
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Agricoltura
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="Tecnologia"
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Tecnologia
+                  </label>
+                </div>
+              </fieldset>
+              <div style="margin-top: 1rem">
+                <button type="submit" class="btn btn-primary">Invia</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
