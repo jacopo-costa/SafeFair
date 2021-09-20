@@ -1,11 +1,22 @@
 const db = require("../db.js");
 
 // Ottiene le prenotazioni per utente e fiera
-exports.getPren = (id_utente, id_fiera) => {
+exports.getPren = (idUtente, idFiera) => {
+  return new Promise((resolve, reject) => {
+    const sql = "SELECT * FROM prenotazioni WHERE idUtente = ? AND idFiera = ?";
+    db.get(sql, [idUtente, idFiera], (err, row) => {
+      if (err) reject(err);
+      else resolve(row);
+    });
+  });
+};
+
+// Ottiene le esposizioni per utente e fiera
+exports.getExp = (idVenditore, idFiera) => {
   return new Promise((resolve, reject) => {
     const sql =
-      "SELECT * FROM prenotazioni WHERE id_utente = ? AND id_fiera = ?";
-    db.get(sql, [id_utente, id_fiera], (err, row) => {
+      "SELECT * FROM esposizioni WHERE idVenditore = ? AND idFiera = ?";
+    db.get(sql, [idVenditore, idFiera], (err, row) => {
       if (err) reject(err);
       else resolve(row);
     });
@@ -13,11 +24,10 @@ exports.getPren = (id_utente, id_fiera) => {
 };
 
 // Ottiene tutte le prenotazioni per utente
-exports.getAllPren = (id_utente) => {
+exports.getAllPren = (idUtente) => {
   return new Promise((resolve, reject) => {
-    const sql =
-      "SELECT * FROM prenotazioni WHERE id_utente = ?";
-    db.all(sql, [id_utente], (err, rows) => {
+    const sql = "SELECT * FROM prenotazioni WHERE idUtente = ?";
+    db.all(sql, [idUtente], (err, rows) => {
       if (err) reject(err);
       else resolve(rows);
     });
@@ -25,11 +35,33 @@ exports.getAllPren = (id_utente) => {
 };
 
 // Salva una prenotazione
-exports.savePren = (id_utente, id_fiera, id_prenotazione) => {
+exports.savePren = (idUtente, idFiera, idPrenotazione) => {
   return new Promise((resolve, reject) => {
     const sql =
-      "INSERT INTO prenotazioni (id_utente, id_fiera, id_prenotazione) VALUES (?,?,?)";
-    db.run(sql, [id_utente, id_fiera, id_prenotazione], (err) => {
+      "INSERT INTO prenotazioni (idUtente, idFiera, idPrenotazione) VALUES (?,?,?)";
+    db.run(sql, [idUtente, idFiera, idPrenotazione], (err) => {
+      if (err) reject(err);
+      else resolve();
+    });
+  });
+};
+
+// Salva una prenotazione alle esposizioni
+exports.saveExp = (idVenditore, idFiera) => {
+  return new Promise((resolve, reject) => {
+    const sql = "INSERT INTO esposizioni (idVenditore, idFiera) VALUES (?,?)";
+    db.run(sql, [idVenditore, idFiera], (err) => {
+      if (err) reject(err);
+      else resolve();
+    });
+  });
+};
+
+// Elimina una prenotazione alle esposizioni
+exports.deleteExp = (idVenditore, idFiera) => {
+  return new Promise((resolve, reject) => {
+    const sql = "DELETE FROM esposizioni WHERE idVenditore = ? AND idFiera = ?";
+    db.run(sql, [idVenditore, idFiera], (err) => {
       if (err) reject(err);
       else resolve();
     });
@@ -37,10 +69,10 @@ exports.savePren = (id_utente, id_fiera, id_prenotazione) => {
 };
 
 // Elimina una prenotazione
-exports.deletePren = (id_utente, id_fiera, id_prenotazione) => {
+exports.deletePren = (idUtente, idFiera) => {
   return new Promise((resolve, reject) => {
-    const sql = "DELETE FROM prenotazioni WHERE id_utente = ? AND id_fiera = ?";
-    db.run(sql, [id_utente, id_fiera], (err) => {
+    const sql = "DELETE FROM prenotazioni WHERE idUtente = ? AND idFiera = ?";
+    db.run(sql, [idUtente, idFiera], (err) => {
       if (err) reject(err);
       else resolve();
     });
@@ -48,11 +80,11 @@ exports.deletePren = (id_utente, id_fiera, id_prenotazione) => {
 };
 
 // Diminuisce i posti disponibili alla fiera
-exports.decrement = (id_fiera) => {
+exports.decrement = (idFiera) => {
   return new Promise((resolve, reject) => {
     const sql =
       "UPDATE fiere SET postiRimanenti = postiRimanenti - 1 WHERE id = ?";
-    db.run(sql, [id_fiera], (err) => {
+    db.run(sql, [idFiera], (err) => {
       if (err) reject(err);
       else resolve();
     });
@@ -60,11 +92,11 @@ exports.decrement = (id_fiera) => {
 };
 
 // Aumenta i posti disponibili alla fiera
-exports.increment = (id_fiera) => {
+exports.increment = (idFiera) => {
   return new Promise((resolve, reject) => {
     const sql =
       "UPDATE fiere SET postiRimanenti = postiRimanenti + 1 WHERE id = ?";
-    db.run(sql, [id_fiera], (err) => {
+    db.run(sql, [idFiera], (err) => {
       if (err) reject(err);
       else resolve();
     });

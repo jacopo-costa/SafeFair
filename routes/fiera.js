@@ -43,30 +43,35 @@ router.get("/", (req, res) => {
 });
 
 router.get("/prenota/:id", ensureAuthenticated, async (req, res) => {
-  
   // Ottiene l'utente
   var user = await User.findById(req.user.id);
 
-  // Se un seller manda un errore e ritorna alla dashboard
+  // Se un seller ottiene le esposizioni prenotate
+  // se non ce ne sono per la fiera la aggiunge
   if (user.tipo === "SELLER") {
-    req.flash("error_msg", "Un venditore non può prenotare posti");
-    res.redirect("/dashboard");
-  }
-
-  // Ottiene le prenotazioni per utente e fiera
-  var prenotazioni = await Pren.getPren(req.user.id, req.params.id);
-  if (prenotazioni == undefined) {
-    
-    // Genera un ID prenotazione casuale
-    var idPrenotazione = Math.floor(Math.random() * 100000000);
-    await Pren.savePren(req.user.id, req.params.id, idPrenotazione);
-    await Pren.decrement(req.params.id);
-    req.flash("success_msg", "Prenotazione effettuata con successo");
-    res.redirect("/dashboard");
-
+    var esposizioni = await Pren.getExp(req.user.id, req.params.id);
+    if (esposizioni == undefined) {
+      await Pren.saveExp(req.user.id, req.params.id);
+      req.flash("success_msg", "Esposizione prenotata con successo");
+      res.redirect("/dashboard");
+    } else {
+      req.flash("error_msg", "Esposizione già prenotata");
+      res.redirect("/dashboard");
+    }
   } else {
-    req.flash("error_msg", "Prenotazione già presente");
-    res.redirect("/dashboard");
+    // Ottiene le prenotazioni per utente e fiera
+    var prenotazioni = await Pren.getPren(req.user.id, req.params.id);
+    if (prenotazioni == undefined) {
+      // Genera un ID prenotazione casuale
+      var idPrenotazione = Math.floor(Math.random() * 100000000);
+      await Pren.savePren(req.user.id, req.params.id, idPrenotazione);
+      await Pren.decrement(req.params.id);
+      req.flash("success_msg", "Prenotazione effettuata con successo");
+      res.redirect("/dashboard");
+    } else {
+      req.flash("error_msg", "Prenotazione già presente");
+      res.redirect("/dashboard");
+    }
   }
 });
 

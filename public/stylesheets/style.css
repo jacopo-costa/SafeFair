@@ -23,6 +23,12 @@
     border-width: 2px;
 }
 
+.photo {
+  object-fit: cover;
+  width: auto;
+  height: 20rem;
+}
+
 #scrollToTopBtn {
   background-color: black;
   border: none;

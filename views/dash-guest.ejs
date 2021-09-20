@@ -111,7 +111,7 @@
               <% break; } %>
 
               <img
-                class="card-img-top"
+                class="card-img-top photo"
                 src="/images/fiere/<%= fiera.nome %>/1.jpg"
                 alt="<%= fiera.nome %>"
               />
@@ -127,13 +127,7 @@
                     -webkit-box-orient: vertical;
                   "
                 >
-                  <%= fiera.descrizione %> Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Praesentium commodi recusandae,
-                  dicta molestiae aut, sunt debitis culpa, magnam quia nemo
-                  aperiam ad totam ipsum libero asperiores consectetur. Voluptas
-                  enim sapiente voluptatibus vero vitae velit dicta consequuntur
-                  consectetur, cumque ducimus delectus fugit dolores eius
-                  distinctio labore accusantium id explicabo eos doloremque?
+                  <%= fiera.descrizione %>
                 </p>
                 <a href="/fiera/<%= fiera.id %>" class="btn btn-primary"
                   >Vai alla fiera</a
@@ -152,7 +146,7 @@
       aria-labelledby="prenotazioni"
     >
       <% for( const pren of prenotazioni ) { %>
-      <h1><%= pren.id_prenotazione %></h1>
+      <h1><%= pren.idPrenotazione %></h1>
       <% } %>
     </div>
     <div

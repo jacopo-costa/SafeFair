@@ -13,10 +13,10 @@ exports.getFiereByTags = (tags) => {
 
 
 // Ottiene le esposizioni per utente
-exports.getExp = (id_utente) => {
+exports.getExp = (idUtente) => {
     return new Promise((resolve, reject) => {
-      const sql = "SELECT * FROM esposizioni WHERE id_utente = ?";
-      db.all(sql, [id_utente], (err, rows) => {
+      const sql = "SELECT * FROM esposizioni WHERE idUtente = ?";
+      db.all(sql, [idUtente], (err, rows) => {
         if (err) reject(err);
         else resolve(rows);
       });
