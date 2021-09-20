@@ -1,16 +1,16 @@
 <%- include ('./partials/header.ejs') %>
 
-<div style="margin: 2rem"><%- include ('./partials/messages.ejs') %></div>
+<div class="m2"><%- include ('./partials/messages.ejs') %></div>
 
-<div style="display: flex; justify-content: flex-end; margin: 1rem">
+<div class="logout">
   <a href="/user/logout" class="btn btn-danger">Logout</a>
 </div>
 
-<h1 class="text-center" style="margin-bottom: 4rem">
+<h1 class="text-center mb-4">
   <span class="oi oi-home"></span> Benvenuto <%= utente.nome %>!
 </h1>
 
-<div class="col" style="margin: 2rem">
+<div class="col" class="m2">
   <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
       <button
@@ -79,47 +79,41 @@
       <div class="container">
         <div class="row justify-content-center row-cols-1 row-cols-md-2">
           <% for( const fiera of subscribed ) { %>
-          <div class="col">
-            <div class="card" style="margin-top: 1rem">
+          <div class="col fiera-card">
+            <div class="card mt-1">
               <% switch (fiera.tag) { case 'Fumetto': %>
               <div
-                class="card-header"
-                style="background-color: #b02a37; color: white"
+                class="card-header fumetto"
               >
                 <%= fiera.tag %>
               </div>
               <% break; case 'Artigianato': %>
               <div
-                class="card-header"
-                style="background-color: #cc9a06; color: white"
+                class="card-header artigianato"
               >
                 <%= fiera.tag %>
               </div>
               <% break; case 'Nautica': %>
               <div
-                class="card-header"
-                style="background-color: #0a58ca; color: white"
+                class="card-header nautica"
               >
                 <%= fiera.tag %>
               </div>
               <% break; case 'Cucina': %>
               <div
-                class="card-header"
-                style="background-color: #ca6510; color: white"
+                class="card-header cucina""
               >
                 <%= fiera.tag %>
               </div>
               <% break; case 'Agricoltura': %>
               <div
-                class="card-header"
-                style="background-color: #146c43; color: white"
+                class="card-header agricoltura"
               >
                 <%= fiera.tag %>
               </div>
               <% break; case 'Tecnologia': %>
               <div
-                class="card-header"
-                style="background-color: #6c757d; color: white"
+                class="card-header tecnologia"
               >
                 <%= fiera.tag %>
               </div>
@@ -157,47 +151,41 @@
       <div class="container">
         <div class="row justify-content-center row-cols-1 row-cols-md-2">
           <% for( const near of nearme ) { %>
-          <div class="col">
-            <div class="card" style="margin-top: 1rem">
+          <div class="col fiera-card">
+            <div class="card mt-1">
               <% switch (near.tag) { case 'Fumetto': %>
               <div
-                class="card-header"
-                style="background-color: #b02a37; color: white"
+                class="card-header fumetto"
               >
                 <%= near.tag %>
               </div>
               <% break; case 'Artigianato': %>
               <div
-                class="card-header"
-                style="background-color: #cc9a06; color: white"
+                class="card-header artigianato"
               >
                 <%= near.tag %>
               </div>
               <% break; case 'Nautica': %>
               <div
-                class="card-header"
-                style="background-color: #0a58ca; color: white"
+                class="card-header nautica"
               >
                 <%= near.tag %>
               </div>
               <% break; case 'Cucina': %>
               <div
-                class="card-header"
-                style="background-color: #ca6510; color: white"
+                class="card-header cucina""
               >
                 <%= near.tag %>
               </div>
               <% break; case 'Agricoltura': %>
               <div
-                class="card-header"
-                style="background-color: #146c43; color: white"
+                class="card-header agricoltura"
               >
                 <%= near.tag %>
               </div>
               <% break; case 'Tecnologia': %>
               <div
-                class="card-header"
-                style="background-color: #6c757d; color: white"
+                class="card-header tecnologia"
               >
                 <%= near.tag %>
               </div>
@@ -227,7 +215,7 @@
     </div>
     
     <div
-      class="tab-pane fade"
+      class="tab-pane fade m1"
       id="pills-esposizioni"
       role="tabpanel"
       aria-labelledby="esposizioni"
@@ -274,7 +262,7 @@
     >
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-auto" style="margin: 2rem">
+          <div class="col-md-auto m2">
             <h1 class="text-center">
               <span class="oi oi-pencil"></span> Modifica
             </h1>
@@ -290,8 +278,8 @@
                   value="<%= typeof pos != 'undefined' ? pos : '' %>"
                 />
               </div>
-              <div style="margin-top: 1rem">
-                <button type="submit" class="btn btn-primary">Invia</button>
+              <div class="mt-1 row justify-content-center">
+                <button type="submit" class="btn btn-primary center-button">Invia</button>
               </div>
             </form>
 
@@ -370,8 +358,8 @@
                   </label>
                 </div>
               </fieldset>
-              <div style="margin-top: 1rem">
-                <button type="submit" class="btn btn-primary">Invia</button>
+              <div class="mt-1 row justify-content-center">
+                <button type="submit" class="btn btn-primary center-button">Invia</button>
               </div>
             </form>
           </div>

@@ -33,6 +33,11 @@
   margin: 1rem;
 }
 
+.qr-code {
+  width: auto; 
+  height: 30rem!important;
+}
+
 .nav-pills .nav-link.active {
   background-color: #1dc8e2 !important;
 }
@@ -43,4 +48,105 @@
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+}
+
+.navbar {
+  background-color: #052c65;
+}
+
+.contatti {
+  margin-top: 1rem; 
+  margin-bottom: 1rem;
+}
+
+.fiera-card {
+  min-width: 30rem;
+}
+
+.m1 {
+  margin: 1rem!important;
+}
+
+.m2 {
+  margin: 2rem!important;
+}
+
+.m5 {
+  margin: 5rem!important;
+}
+
+.mt-1 {
+  margin-top: 1rem!important;
+}
+
+.mt-2 {
+  margin-top: 2rem!important;
+}
+
+.mb-1{
+  margin-bottom: 1rem!important;
+}
+
+.mb-2{
+  margin-bottom: 2rem!important;
+}
+
+.mb-4 {
+  margin-bottom: 4rem!important;
+}
+
+.line {
+  height: 2rem!important; 
+  line-height: 2rem!important;
+}
+
+.logout {
+  display: flex; 
+  justify-content: flex-end; 
+  margin: 1rem;
+}
+
+.fumetto{
+  background-color: #b02a37; 
+  color: white
+}
+
+.artigianato {
+  background-color: #cc9a06; 
+  color: white
+}
+
+.nautica {
+  background-color: #0a58ca; 
+  color: white
+}
+
+.cucina {
+  background-color: #ca6510; 
+  color: white
+}
+
+.agricoltura{
+  background-color: #146c43; 
+  color: white
+}
+
+.tecnologia{
+  background-color: #6c757d; 
+  color: white
+}
+
+.img-carousel {
+  object-fit: cover; 
+  height: 35rem!important;
+}
+
+.notizia {
+  width: 30rem; 
+  margin-bottom: 1rem;
+}
+
+.center-button {
+  text-align: center; 
+  margin: 1rem!important;
 }

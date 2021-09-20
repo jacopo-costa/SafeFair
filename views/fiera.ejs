@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <h1 class="text-center" style="margin: 1rem">
+    <h1 class="text-center m1">
       <strong><%= fiera.nome %></strong>
     </h1>
     <div
@@ -13,24 +13,21 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            class="d-block w-100"
-            style="object-fit: cover; height: 35rem"
+            class="d-block w-100 img-carousel"
             src="/images/fiere/<%= fiera.nome %>/1.jpg"
             alt="First slide"
           />
         </div>
         <div class="carousel-item">
           <img
-            class="d-block w-100"
-            style="object-fit: cover; height: 35rem"
+            class="d-block w-100 img-carousel"
             src="/images/fiere/<%= fiera.nome %>/2.jpg"
             alt="Second slide"
           />
         </div>
         <div class="carousel-item">
           <img
-            class="d-block w-100"
-            style="object-fit: cover; height: 35rem"
+            class="d-block w-100 img-carousel"
             src="/images/fiere/<%= fiera.nome %>/3.jpg"
             alt="Third slide"
           />
@@ -39,32 +36,32 @@
     </div>
   </div>
 
-  <h3 style="margin-bottom: 2rem; margin-top: 2rem">Descrizione:</h3>
+  <h3 class="mb-2 mt-2">Descrizione:</h3>
   <p><%= fiera.descrizione %></p>
 
-  <div class="row justify-content-start" style="margin-bottom: 1rem; margin-top: 1rem">
+  <div class="row justify-content-start mb-1 mt-1">
     <div class="col-sm-auto">
       <h5>Data inizio:</h5>
     </div>
-    <div class="col-sm-auto" style="height: 2rem; line-height: 2rem;">
+    <div class="col-sm-auto line">
       <p><%= fiera.dataInizio %></p>
     </div>
   </div>
 
-  <div class="row justify-content-start" style="margin-bottom: 1rem; margin-top: 1rem">
+  <div class="row justify-content-start mb-1 mt-1">
     <div class="col-sm-auto">
       <h5>Data fine:</h5>
     </div>
-    <div class="col-sm-auto" style="height: 2rem; line-height: 2rem;">
+    <div class="col-sm-auto line">
       <p><%= fiera.dataFine %></p>
     </div>
   </div>
 
-  <div class="row justify-content-start" style="margin-bottom: 1rem; margin-top: 1rem">
+  <div class="row justify-content-start mb-1 mt-1">
     <div class="col-sm-auto">
       <h5>Posizione:</h5>
     </div>
-    <div class="col-sm-auto" style="height: 2rem; line-height: 2rem;">
+    <div class="col-sm-auto line">
       <p><%= fiera.posizione %></p>
     </div>
     <div class="col-sm-auto">
@@ -77,11 +74,11 @@
     </div>
   </div>
 
-  <div class="row justify-content-start" style="margin-bottom: 1rem; margin-top: 1rem">
+  <div class="row justify-content-start mb-1 mt-1">
     <div class="col-sm-auto mt-auto">
       <h5>Posti totali:</h5>
     </div>
-    <div class="col-sm-auto" style="height: 2rem; line-height: 2rem;">
+    <div class="col-sm-auto line">
       <p><%= fiera.postiTotali %></p>
     </div>
   </div>
@@ -90,7 +87,7 @@
     <div class="col-sm-auto mt-auto">
       <h5>Posti rimanenti:</h5>
     </div>
-    <div class="col-sm-auto" style="height: 2rem; line-height: 2rem;">
+    <div class="col-sm-auto line">
       <p><%= fiera.postiRimanenti %></p>
     </div>
     <div class="col-sm-auto">

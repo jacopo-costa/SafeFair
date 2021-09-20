@@ -1,53 +1,47 @@
 <%- include ('./partials/header.ejs') %>
 
-<h1 class="text-center mb-3" style="margin: 1rem">
+<h1 class="text-center mb-3 m1">
   <span class="oi oi-layers"></span> Tutte le fiere
 </h1>
 
 <div class="container">
   <div class="row justify-content-center row-cols-1 row-cols-md-2">
     <% for( const fiera of fiere ) { %>
-    <div class="col">
-      <div class="card" style="margin-bottom: 1rem">
+    <div class="col fiera-card">
+      <div class="card mb-1">
         <% switch (fiera.tag) { case 'Fumetto': %>
         <div
-          class="card-header"
-          style="background-color: #b02a37; color: white"
+          class="card-header fumetto"
         >
           <%= fiera.tag %>
         </div>
         <% break; case 'Artigianato': %>
         <div
-          class="card-header"
-          style="background-color: #cc9a06; color: white"
+          class="card-header artigianato"
         >
           <%= fiera.tag %>
         </div>
         <% break; case 'Nautica': %>
         <div
-          class="card-header"
-          style="background-color: #0a58ca; color: white"
+          class="card-header nautica"
         >
           <%= fiera.tag %>
         </div>
         <% break; case 'Cucina': %>
         <div
-          class="card-header"
-          style="background-color: #ca6510; color: white"
+          class="card-header cucina"
         >
           <%= fiera.tag %>
         </div>
         <% break; case 'Agricoltura': %>
         <div
-          class="card-header"
-          style="background-color: #146c43; color: white"
+          class="card-header agricoltura"
         >
           <%= fiera.tag %>
         </div>
         <% break; case 'Tecnologia': %>
         <div
-          class="card-header"
-          style="background-color: #6c757d; color: white"
+          class="card-header tecnologia"
         >
           <%= fiera.tag %>
         </div>
@@ -60,16 +54,7 @@
         />
         <div class="card-body">
           <h5 class="card-title"><%= fiera.nome %></h5>
-          <p
-            class="card-text"
-            style="
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              -webkit-line-clamp: 4;
-              -webkit-box-orient: vertical;
-            "
-          >
+          <p class="card-text">
             <%= fiera.descrizione %>
           </p>
           <a href="/fiera/<%= fiera.id %>" class="btn btn-primary"

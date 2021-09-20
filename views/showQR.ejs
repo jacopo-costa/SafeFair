@@ -3,18 +3,16 @@
 <div class="container">
   <div class="row justify-content-center">
     <%- include ('./partials/messages.ejs') %>
-    <div class="col text-center" style="margin: 5rem">
-      <img src="<%= qr_code %>" alt="QR Code" style="width: auto; height:
-      30rem;">
+    <div class="col text-center m5">
+      <img src="<%= qr_code %>" alt="QR Code" class="qr-code">
     </div>
   </div>
 
   <div class="row justify-content-center">
     <div class="col text-center">
       <a
-        class="btn btn-primary"
+        class="btn btn-primary center-button"
         href="/dashboard"
-        style="text-align: center; margin: 1rem"
         >Chiudi</a
       >
     </div>
