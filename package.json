@@ -4,8 +4,8 @@
   "description": "Progetto scolastico per applicazione web",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
   },
   "author": "Jacopo Costa",
